@@ -1,0 +1,32 @@
+imax *   number of channels
+jmax *   number of backgrounds
+kmax *   number of nuisance parameters
+----------------------------------------------------------------------------------------------------
+bin                                                          AH0l2bSRbin_450_470      
+observation                                                  -1                       
+----------------------------------------------------------------------------------------------------
+shapes * *                                                   rootfiles_combined_elemuon_channels_2017/$CHANNEL.root          $PROCESS          $SYSTEMATIC/$PROCESS
+----------------------------------------------------------------------------------------------------
+bin                                                          AH0l2bSRbin_450_470           AH0l2bSRbin_450_470           AH0l2bSRbin_450_470           AH0l2bSRbin_450_470           AH0l2bSRbin_450_470           AH0l2bSRbin_450_470           AH0l2bSRbin_450_470           AH0l2bSRbin_450_470           
+process                                                      ttDM_MChi1_MPhi200_pseudo     QCD                           DYJetsToLL                    VV                            ST                            WJetsToLNu                    DYJetsToNuNu                  TTbarSL                       
+process                                                      0                             1                             2                             3                             4                             5                             6                             7                             
+rate                                                         2.722366                 0.000000                 0.007778                 0.824492                 2.672124                 1.361283                 6.123820                 22.108921                
+----------------------------------------------------------------------------------------------------
+ST_xsec                                            lnN       -                        -                        -                        -                        1.200                    -                        -                        -                        
+forwJet_AH_T                                       lnN       -                        -                        -                        -                        -                        -                        -                        -                        
+forwJet_AH_W                                       lnN       -                        -                        -                        -                        -                        -                        -                        -                        
+forwJet_AH_Z                                       lnN       -                        -                        -                        -                        -                        -                        -                        -                        
+forwJet_SL_T                                       lnN       -                        -                        -                        -                        -                        -                        -                        -                        
+forwJet_SL_W                                       lnN       -                        -                        -                        -                        -                        -                        -                        -                        
+lumi_13TeV                                         lnN       1.025                    1.025                    -                        1.025                    1.025                    -                        -                        -                        
+pdf_accept_1l_T                                    lnN       -                        -                        -                        -                        -                        -                        -                        -                        
+pdf_accept_2l_T                                    lnN       -                        -                        -                        -                        -                        -                        -                        -                        
+pdf_accept_W                                       lnN       -                        -                        -                        -                        -                        -                        -                        -                        
+pdf_accept_Z                                       lnN       -                        -                        -                        -                        -                        -                        -                        -                        
+preFire_1f                                         lnN       -                        -                        -                        -                        -                        -                        -                        -                        
+preFire_2b                                         lnN       1.030                    -                        -                        -                        -                        -                        -                        -                        
+rateWjetsAH_450_470      rateParam           AH0l2bSRbin_450_470 	WJetsToLNu                    1.   
+rateZjetsAH_450_470      rateParam           AH0l2bSRbin_450_470 	DYJetsToNuNu                  1.   
+rateTopAH_450_470        rateParam           AH0l2bSRbin_450_470 	TTbarSL                       1.   
+rateQCDAH_450_470        rateParam           AH0l2bSRbin_450_470 	QCD                           1.   
+* autoMCStats 0.1
