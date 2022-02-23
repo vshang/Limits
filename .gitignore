@@ -5,4 +5,8 @@
 *~
 *.pdf*
 *.png*
+datacards_*
+combinedCards_*
+limitOutput_*
+plotsLimit_*
 crab*sample*
