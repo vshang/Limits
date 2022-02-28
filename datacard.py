@@ -33,7 +33,7 @@ jobs = []
 #latest one used
 #greenShape = ['CMS_scale_j','CMS_res_j','CMS_WqcdWeightRen','CMS_WqcdWeightFac','CMS_WewkWeight','CMS_pdf','CMS_eff_b', 'CMS_scale_pu', 'CMS_scale_top', 'CMS_trig_m','CMS_trig_e', 'QCDscale_ren', 'QCDscale_fac','CMS_eff_e', 'CMS_eff_m','CMS_eff_met_trigger','CMS_HF_Z','CMS_HF_W']#,'CMS_ZqcdWeightRen','CMS_ZqcdWeightFac','CMS_ZewkWeight']#'pdf_accept_Z','pdf_accept_1l_T','pdf_accept_2l_T','pdf_accept_W','pdf_accept_2l','pdf_accept_1l','CMS_HF_V']
 
-#greenShape = ['CMS_res_j','CMS_WqcdWeightRen','CMS_WqcdWeightFac','CMS_WewkWeight','CMS_pdf','CMS_eff_b', 'CMS_scale_pu', 'CMS_eff_met_trigger', 'CMS_eff_lep_trigger','pdf_accept_2l','pdf_accept_1l','pdf_accept_0l','CMS_eff_e', 'CMS_eff_m','CMS_HF_Z','CMS_HF_W','CMS_ZqcdWeightRen','CMS_ZqcdWeightFac','CMS_ZewkWeight', 'QCDscale_fac_VV']
+#greenShape = ['CMS_res_j','CMS_WqcdWeightRen','CMS_WqcdWeightFac','CMS_WewkWeight','CMS_pdf','CMS_eff_b', 'CMS_scale_pu', 'CMS_eff_met_trigger', 'pdf_accept_2l','pdf_accept_1l','pdf_accept_0l', 'CMS_HF_Z','CMS_HF_W','CMS_ZqcdWeightRen','CMS_ZqcdWeightFac','CMS_ZewkWeight']
 
 greenShape = ['CMS_res_j','CMS_WqcdWeightRen','CMS_WqcdWeightFac','CMS_WewkWeight','CMS_pdf','CMS_eff_b', 'CMS_scale_pu', 'CMS_eff_met_trigger', 'CMS_eff_lep_trigger','pdf_accept_2l','pdf_accept_1l','pdf_accept_0l','CMS_eff_e', 'CMS_eff_m','CMS_HF_Z','CMS_HF_W','CMS_ZqcdWeightRen','CMS_ZqcdWeightFac','CMS_ZewkWeight', 'QCDscale_ren_TT', 'QCDscale_fac_TT', 'QCDscale_ren_VV', 'QCDscale_fac_VV', 'preFire', 'CMS_scale_j']
 
@@ -49,9 +49,7 @@ sign = []
 
 
 
-#shape = ['QCDscale_fac', 'QCDscale_ren', 'EWKscale_Z', 'EWKscale_W', 'CMS_eff_b', 'CMS_scale_pu', 'CMS_scale_top', 'CMS_eff_trigger', 'CMS_eff_e', 'CMS_eff_m']
 shape = []
-#shape = ['CMS_res_j','CMS_WqcdWeightRen','CMS_WqcdWeightFac','CMS_WewkWeight','CMS_pdf','CMS_HF','CMS_HF_V','CMS_eff_b', 'CMS_scale_pu', 'CMS_eff_met_trigger', 'CMS_trig_m','CMS_trig_e', 'pdf_accept_2l','pdf_accept_1l','pdf_accept_0l','CMS_eff_e', 'CMS_eff_m','CMS_HF_Z','CMS_HF_W','CMS_ZqcdWeightRen','CMS_ZqcdWeightFac','CMS_ZewkWeight','QCDscale_ren', 'QCDscale_fac', 'QCDscale_ren_TT', 'QCDscale_fac_TT', 'QCDscale_ren_VV', 'QCDscale_fac_VV', 'QCDscale_ren_O', 'QCDscale_fac_O',]
 #jesUnc = ['AbsoluteMPFBias', 'AbsoluteScale', 'AbsoluteStat', 'FlavorQCD', 'Fragmentation', 'PileUpDataMC', 'PileUpPtBB', 'PileUpPtEC1', 'PileUpPtEC2', 'PileUpPtHF', 'PileUpPtRef', 'RelativeFSR', 'RelativeJEREC1', 'RelativeJEREC2', 'RelativeJERHF', 'RelativePtBB', 'RelativePtEC1', 'RelativePtEC2', 'RelativePtHF', 'RelativeBal', 'RelativeSample', 'RelativeStatEC', 'RelativeStatFSR', 'RelativeStatHF', 'SinglePionECAL', 'SinglePionHCAL', 'TimePtEta']
 #for unc in jesUnc:
     #shape.append('CMS_scale'+unc+'_j')
@@ -101,9 +99,9 @@ norm = {
     #"QCD_xsec"   : {"QCD" : 2.000},
     #"QCD_xsec"   : {"QCD" : 1.500},
     "ST_xsec"    : {"ST" : 1.200},
-    "lumi16_13TeV" : {"VV" : 1.012, "DYJetsToLL" : 1.012, "DYJetsToNuNu" : 1.012, "WJetsToLNu" : 1.012, "ST" : 1.012, "QCD" : 1.012, "TTbarSL" : 1.012, "DM" : 1.012},
-    #"lumi17_13TeV" : {"VV" : 1.023, "DYJetsToLL" : 1.023, "DYJetsToNuNu" : 1.023, "WJetsToLNu" : 1.023, "ST" : 1.023, "QCD" : 1.023, "TTbarSL" : 1.023, "DM" : 1.023},
-    #"lumi18_13TeV" : {"VV" : 1.025, "DYJetsToLL" : 1.025, "DYJetsToNuNu" : 1.025, "WJetsToLNu" : 1.025, "ST" : 1.025, "QCD" : 1.025, "TTbarSL" : 1.025, "DM" : 1.025},
+    "lumi16_13TeV" : {"VV" : 1.012, "ST" : 1.012, "DM" : 1.012},
+    #"lumi17_13TeV" : {"VV" : 1.023, "ST" : 1.023, "DM" : 1.023},
+    #"lumi18_13TeV" : {"VV" : 1.025,  "ST" : 1.025, "DM" : 1.025},
 }
 
 
