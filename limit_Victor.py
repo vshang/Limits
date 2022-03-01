@@ -36,12 +36,17 @@ parser.add_option("-a", "--all", action="store_true", default=False, dest="all")
 parser.add_option("-b", "--bash", action="store_true", default=False, dest="bash")
 parser.add_option("-B", "--blind", action="store_true", default=True, dest="blind")
 parser.add_option("-N", "--name", action="store", type="string", default="", dest="name")
+parser.add_option("-Y", "--year", action="store", type="string", default="2016", dest="year")
 (options, args) = parser.parse_args()
 if options.bash: gROOT.SetBatch(True)
 gStyle.SetOptStat(0)
 
-#LUMI        = 35867
-LUMI        = 59800
+if options.year == "2016":
+    LUMI = 35920
+elif options.year == "2017":
+    LUMI = 41530
+elif options.year == "2018":
+    LUMI = 59830
 
 if options.category=="":
     print "Specify category: AH, SL, ALL"
