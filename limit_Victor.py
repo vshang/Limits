@@ -47,6 +47,8 @@ elif options.year == "2017":
     LUMI = 41530
 elif options.year == "2018":
     LUMI = 59830
+elif options.year == "RunII":
+    LUMI = 137240
 
 if options.category=="":
     print "Specify category: AH, SL, ALL"

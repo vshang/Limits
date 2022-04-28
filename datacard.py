@@ -15,6 +15,7 @@ parser.add_option("-c", "--cutcount", action="store_true", default=False, dest="
 parser.add_option("-o", "--override", action="store_true", default=False, dest="override")
 parser.add_option("-v", "--verbose", action="store_true", default=False, dest="verbose")
 parser.add_option("-N", "--name", action="store", type="string", dest="name", default="test")
+parser.add_option("-Y", "--year", action="store", type="string", default="2016", dest="year")
 (options, args) = parser.parse_args()
 
 fileName = options.fileName
@@ -22,6 +23,7 @@ catList = options.catList
 isShape = not options.isCutAndCount
 isOverride = options.override
 verbose = options.verbose
+year = options.year
 
 jobs = []
 
@@ -33,11 +35,11 @@ jobs = []
 #latest one used
 #greenShape = ['CMS_scale_j','CMS_res_j','CMS_WqcdWeightRen','CMS_WqcdWeightFac','CMS_WewkWeight','CMS_pdf','CMS_eff_b', 'CMS_scale_pu', 'CMS_scale_top', 'CMS_trig_m','CMS_trig_e', 'QCDscale_ren', 'QCDscale_fac','CMS_eff_e', 'CMS_eff_m','CMS_eff_met_trigger','CMS_HF_Z','CMS_HF_W']#,'CMS_ZqcdWeightRen','CMS_ZqcdWeightFac','CMS_ZewkWeight']#'pdf_accept_Z','pdf_accept_1l_T','pdf_accept_2l_T','pdf_accept_W','pdf_accept_2l','pdf_accept_1l','CMS_HF_V']
 
-#greenShape = ['CMS_res_j','CMS_WqcdWeightRen','CMS_WqcdWeightFac','CMS_WewkWeight','CMS_pdf','CMS_eff_b', 'CMS_scale_pu', 'CMS_eff_met_trigger', 'pdf_accept_2l','pdf_accept_1l','pdf_accept_0l', 'CMS_HF_Z','CMS_HF_W','CMS_ZqcdWeightRen','CMS_ZqcdWeightFac','CMS_ZewkWeight']
+greenShape = ['CMS_res_j', 'CMS_pdf','CMS_eff_b', 'CMS_scale_pu', 'CMS_eff_met_trigger', 'QCDscale_ren_TT', 'QCDscale_fac_TT', 'QCDscale_ren_VV', 'QCDscale_fac_VV', 'preFire']
 
-greenShape = ['CMS_res_j','CMS_WqcdWeightRen','CMS_WqcdWeightFac','CMS_WewkWeight','CMS_pdf','CMS_eff_b', 'CMS_scale_pu', 'CMS_eff_met_trigger', 'CMS_eff_lep_trigger','pdf_accept_2l','pdf_accept_1l','pdf_accept_0l','CMS_eff_e', 'CMS_eff_m','CMS_HF_Z','CMS_HF_W','CMS_ZqcdWeightRen','CMS_ZqcdWeightFac','CMS_ZewkWeight', 'QCDscale_ren_TT', 'QCDscale_fac_TT', 'QCDscale_ren_VV', 'QCDscale_fac_VV', 'preFire', 'CMS_scale_j']
+#greenShape = ['CMS_res_j','CMS_WqcdWeightRen','CMS_WqcdWeightFac','CMS_WewkWeight','CMS_pdf','CMS_eff_b', 'CMS_scale_pu', 'CMS_eff_met_trigger', 'CMS_eff_lep_trigger','pdf_accept_2l','pdf_accept_1l','pdf_accept_0l','CMS_eff_e', 'CMS_eff_m','CMS_HF_Z','CMS_HF_W','CMS_ZqcdWeightRen','CMS_ZqcdWeightFac','CMS_ZewkWeight', 'QCDscale_ren_TT', 'QCDscale_fac_TT', 'QCDscale_ren_VV', 'QCDscale_fac_VV', 'preFire', 'CMS_scale_j']
 
-#greenShape = []
+#greenShape = ['CMS_HF_V']
 
 categories = []
 back = []
@@ -50,9 +52,9 @@ sign = []
 
 
 shape = []
-#jesUnc = ['AbsoluteMPFBias', 'AbsoluteScale', 'AbsoluteStat', 'FlavorQCD', 'Fragmentation', 'PileUpDataMC', 'PileUpPtBB', 'PileUpPtEC1', 'PileUpPtEC2', 'PileUpPtHF', 'PileUpPtRef', 'RelativeFSR', 'RelativeJEREC1', 'RelativeJEREC2', 'RelativeJERHF', 'RelativePtBB', 'RelativePtEC1', 'RelativePtEC2', 'RelativePtHF', 'RelativeBal', 'RelativeSample', 'RelativeStatEC', 'RelativeStatFSR', 'RelativeStatHF', 'SinglePionECAL', 'SinglePionHCAL', 'TimePtEta']
-#for unc in jesUnc:
-    #greenShape.append('CMS_scale'+unc+'_j')
+jesUnc = ['AbsoluteMPFBias', 'AbsoluteScale', 'AbsoluteStat', 'FlavorQCD', 'Fragmentation', 'PileUpDataMC', 'PileUpPtBB', 'PileUpPtEC1', 'PileUpPtEC2', 'PileUpPtHF', 'PileUpPtRef', 'RelativeFSR', 'RelativeJEREC1', 'RelativeJEREC2', 'RelativeJERHF', 'RelativePtBB', 'RelativePtEC1', 'RelativePtEC2', 'RelativePtHF', 'RelativeBal', 'RelativeSample', 'RelativeStatEC', 'RelativeStatFSR', 'RelativeStatHF', 'SinglePionECAL', 'SinglePionHCAL', 'TimePtEta']
+for unc in jesUnc:
+    greenShape.append('CMS_scale'+unc+'_j')
 
 norm = {
 #    "QCDscale_Z_ACCEPT" : {"DYJets" : 1.03,},
@@ -98,11 +100,19 @@ norm = {
     #"QCD_xsec"   : {"QCD" : 2.000},
     #"QCD_xsec"   : {"QCD" : 1.500},
     "ST_xsec"    : {"ST" : 1.200},
-    "lumi16_13TeV" : {"VV" : 1.012, "ST" : 1.012, "DM" : 1.012},
+    #"lumi16_13TeV" : {"VV" : 1.012, "ST" : 1.012, "DM" : 1.012},
     #"lumi17_13TeV" : {"VV" : 1.023, "ST" : 1.023, "DM" : 1.023},
     #"lumi18_13TeV" : {"VV" : 1.025,  "ST" : 1.025, "DM" : 1.025},
 }
 
+#Add lumi norm uncertainties based on year
+if year == "2016":
+    norm["lumi16_13TeV"] = {"VV" : 1.012, "ST" : 1.012, "DM" : 1.012}
+    #norm["lumi16_13TeV"] = {"VV" : 1.012, "ST" : 1.012, "DM" : 1.012, "QCD" : 1.012}
+elif year == "2017":
+    norm["lumi17_13TeV"] = {"VV" : 1.023, "ST" : 1.023, "DM" : 1.023}
+elif year == "2018":
+    norm["lumi18_13TeV"] = {"VV" : 1.025,  "ST" : 1.025, "DM" : 1.025}
 
 freenorm = {
 #    "CMS_norm_DYJetsToNuNu_HT" : 4,
@@ -386,8 +396,8 @@ def fillLists():
         obj = key.ReadObj()
         if obj.IsA().InheritsFrom("TH1"):
             name = obj.GetName()
-            if 'DM' in name:
-            #if 'DM_MChi1_MPhi300_scalar' in name:
+            #if 'DM' in name:
+            if 'DM_MChi1_MPhi125_scalar' in name:
                 sign.append( name )                
             ##paper
             #elif not "data_obs" in name and not "BkgSum" in name: back.append(name)

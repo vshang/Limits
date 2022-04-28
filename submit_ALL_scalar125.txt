@@ -1,0 +1,1 @@
+combine -M AsymptoticLimits --datacard combinedCards_ModuleCommonSkim_03092022_ttH_RunIIFull/ttDM_MChi1_MPhi125_scalar1b2b_ALL.txt -m 125 -n ttDM_MChi1_MPhi125_scalar1b2b_ALL  | grep -e Observed -e Expected | awk '{print $NF}' > limitOutput_ModuleCommonSkim_03092022_ttH_RunIIFull/ttDM_MChi1_MPhi125_scalar1b2b_ALL_AsymptoticLimits_grepOutput.txt 
