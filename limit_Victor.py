@@ -42,13 +42,13 @@ if options.bash: gROOT.SetBatch(True)
 gStyle.SetOptStat(0)
 
 if options.year == "2016":
-    LUMI = 35920
+    LUMI = 36330
 elif options.year == "2017":
     LUMI = 41530
 elif options.year == "2018":
-    LUMI = 59830
+    LUMI = 59740
 elif options.year == "RunII":
-    LUMI = 137240
+    LUMI = 137600
 
 if options.category=="":
     print "Specify category: AH, SL, ALL"
@@ -59,7 +59,7 @@ if options.signal=="":
     sys.exit(2)
 
 
-signals = [50, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+signals = [10, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500]
 
 
 try: os.stat('plotsLimit_'+options.name)
@@ -246,7 +246,7 @@ def limit(channel, signal):
     #drawCMS(LUMI, "Preliminary")
     drawCMS(LUMI, "")
     
-    if True:
+    if False:
         if(options.mediator=='SC'):
             massT, valT = fillValues("./limitOutput_"+options.name + "/" + signal.replace('tttDM', 'tDM') + "_MChi1_MPhi%d_scalar"+options.bjets+"_"+ channel + "_AsymptoticLimits_grepOutput.txt")
         elif(options.mediator=='PS'):

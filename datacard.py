@@ -35,11 +35,13 @@ jobs = []
 #latest one used
 #greenShape = ['CMS_scale_j','CMS_res_j','CMS_WqcdWeightRen','CMS_WqcdWeightFac','CMS_WewkWeight','CMS_pdf','CMS_eff_b', 'CMS_scale_pu', 'CMS_scale_top', 'CMS_trig_m','CMS_trig_e', 'QCDscale_ren', 'QCDscale_fac','CMS_eff_e', 'CMS_eff_m','CMS_eff_met_trigger','CMS_HF_Z','CMS_HF_W']#,'CMS_ZqcdWeightRen','CMS_ZqcdWeightFac','CMS_ZewkWeight']#'pdf_accept_Z','pdf_accept_1l_T','pdf_accept_2l_T','pdf_accept_W','pdf_accept_2l','pdf_accept_1l','CMS_HF_V']
 
-greenShape = ['CMS_res_j', 'CMS_pdf','CMS_eff_b', 'CMS_scale_pu', 'CMS_eff_met_trigger', 'QCDscale_ren_TT', 'QCDscale_fac_TT', 'QCDscale_ren_VV', 'QCDscale_fac_VV', 'preFire']
+greenShape = ['CMS_res_j_'+year, 'CMS_WqcdWeightRen', 'CMS_WqcdWeightFac', 'CMS_WewkWeight', 'CMS_ZqcdWeightRen', 'CMS_ZqcdWeightFac', 'CMS_ZewkWeight', 'CMS_pdf', 'CMS_eff_b_corr', 'CMS_eff_b_light_corr', 'CMS_eff_b_'+year, 'CMS_eff_b_light_'+year, 'CMS_scale_pu', 'CMS_eff_met_trigger', 'QCDscale_ren_TT', 'QCDscale_fac_TT', 'QCDscale_ren_VV', 'QCDscale_fac_VV', 'preFire']
+
+#greenShape = ['CMS_res_j', 'CMS_pdf', 'CMS_eff_b_corr', 'CMS_eff_b_light_corr', 'CMS_scale_pu', 'CMS_eff_met_trigger', 'QCDscale_ren_TT', 'QCDscale_fac_TT', 'QCDscale_ren_VV', 'QCDscale_fac_VV', 'preFire']
 
 #greenShape = ['CMS_res_j','CMS_WqcdWeightRen','CMS_WqcdWeightFac','CMS_WewkWeight','CMS_pdf','CMS_eff_b', 'CMS_scale_pu', 'CMS_eff_met_trigger', 'CMS_eff_lep_trigger','pdf_accept_2l','pdf_accept_1l','pdf_accept_0l','CMS_eff_e', 'CMS_eff_m','CMS_HF_Z','CMS_HF_W','CMS_ZqcdWeightRen','CMS_ZqcdWeightFac','CMS_ZewkWeight', 'QCDscale_ren_TT', 'QCDscale_fac_TT', 'QCDscale_ren_VV', 'QCDscale_fac_VV', 'preFire', 'CMS_scale_j']
 
-#greenShape = ['CMS_HF_V']
+#greenShape = []
 
 categories = []
 back = []
@@ -99,7 +101,12 @@ norm = {
     #"forwJet_AH_Z":{"DYJetsToNuNu": 1.066},
     #"QCD_xsec"   : {"QCD" : 2.000},
     #"QCD_xsec"   : {"QCD" : 1.500},
-    "ST_xsec"    : {"ST" : 1.200},
+    "ST_xsec"     : {"ST" : 1.200},
+    "QCDScale_tDM" : {"tDM_" : 1.3},
+    "QCDScale_ttDM" : {"ttDM_" : 1.3},
+    "QCDScale_tttDM" : {"tttDM_" : 1.3},
+    "CMS_PSisr"   : {"VV" : 1.05, "ST" : 1.05, "DM" : 1.05},
+    "CMS_PSfsr"   : {"VV" : 1.05, "ST" : 1.05, "DM" : 1.05},
     #"lumi16_13TeV" : {"VV" : 1.012, "ST" : 1.012, "DM" : 1.012},
     #"lumi17_13TeV" : {"VV" : 1.023, "ST" : 1.023, "DM" : 1.023},
     #"lumi18_13TeV" : {"VV" : 1.025,  "ST" : 1.025, "DM" : 1.025},
@@ -108,7 +115,6 @@ norm = {
 #Add lumi norm uncertainties based on year
 if year == "2016":
     norm["lumi16_13TeV"] = {"VV" : 1.012, "ST" : 1.012, "DM" : 1.012}
-    #norm["lumi16_13TeV"] = {"VV" : 1.012, "ST" : 1.012, "DM" : 1.012, "QCD" : 1.012}
 elif year == "2017":
     norm["lumi17_13TeV"] = {"VV" : 1.023, "ST" : 1.023, "DM" : 1.023}
 elif year == "2018":
@@ -269,6 +275,8 @@ def datacard(cat, sign):
                     if k=='pdf_accept_2l_T' and not('1e1m' in cat or '2m' in cat or '2e' in cat): continue
                     if k=='pdf_accept_1l_T' and (not('1m' in cat or '1e' in cat) or ('1e1m' in cat)): continue
                     if k=='pdf_accept_W' and (not('1m' in cat or '1e' in cat) or ('1e1m' in cat)): continue
+                    if k=='QCDScale_tDM' and ('ttDM' in s or 'tttDM' in s): continue
+                    if k=='QCDScale_ttDM' and ('tttDM' in s): continue
                     card += ("%-25.3f" % norm[k][n])
                     issyst = True
             if not issyst: card += "%-25s" % "-"
@@ -396,8 +404,9 @@ def fillLists():
         obj = key.ReadObj()
         if obj.IsA().InheritsFrom("TH1"):
             name = obj.GetName()
-            #if 'DM' in name:
-            if 'DM_MChi1_MPhi125_scalar' in name:
+            if 'DM' in name:
+            #if ('tDM_MChi1_MPhi100_scalar' in name):
+            #if ('DM_MChi1_MPhi125_scalar') in name or ('DM_MChi1_MPhi100_scalar' in name) or ('DM_MChi1_MPhi150_scalar' in name):
                 sign.append( name )                
             ##paper
             #elif not "data_obs" in name and not "BkgSum" in name: back.append(name)
