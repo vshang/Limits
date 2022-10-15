@@ -10,6 +10,11 @@ if [ ! -d "${RUNDIR}" ]; then
     mkdir $RUNDIR
 fi
 
+if [ ! -d "dilepton/cards/test/" ]; then 
+    echo "Adding test directory to dilepton/cards..."
+    mkdir dilepton/cards/test
+fi
+
 echo "Copying datacards..."
 cd combinedCards_${name}_RunII
 for card in tttDM*_ALL.txt

@@ -30,6 +30,9 @@ def combineCards():
     try: os.stat('combinedCards_'+options.name)
     except: os.mkdir('combinedCards_'+options.name)
     os.chdir('datacards_'+options.name)
+    # try: os.stat('/hdfs/store/user/vshang/combinedCards_'+options.name)
+    # except: os.mkdir('/hdfs/store/user/vshang/combinedCards_'+options.name)
+    # os.chdir('/hdfs/store/user/vshang/datacards_'+options.name)
     cardList = glob.glob('t*txt')
 
     signalPoints = []

@@ -1,0 +1,71 @@
+imax 2
+jmax *
+kmax *
+---------------
+shapes *            tDMSR   ../../data/2018/PS_STDM_NN_pyROOT_out.root $PROCESS        $PROCESS_$SYSTEMATIC
+shapes ttDM_Chi1_PS tDMSR   ../../data/2018/PS_STDM_NN_pyROOT_out.root $PROCESS$MASS   $PROCESS$MASS_$SYSTEMATIC
+shapes tDM_Chi1_PS  tDMSR   ../../data/2018/PS_STDM_NN_pyROOT_out.root $PROCESS$MASS   $PROCESS$MASS_$SYSTEMATIC
+shapes *            ttDMSR  ../../data/2018/PS_ttDM_NN_pyROOT_out.root $PROCESS        $PROCESS_$SYSTEMATIC
+shapes ttDM_Chi1_PS ttDMSR  ../../data/2018/PS_ttDM_NN_pyROOT_out.root $PROCESS$MASS   $PROCESS$MASS_$SYSTEMATIC
+shapes tDM_Chi1_PS  ttDMSR  ../../data/2018/PS_ttDM_NN_pyROOT_out.root $PROCESS$MASS   $PROCESS$MASS_$SYSTEMATIC
+---------------
+bin             tDMSR   ttDMSR
+observation     -1      -1
+------------------------------
+bin                                 tDMSR           tDMSR           tDMSR       tDMSR       tDMSR       tDMSR   tDMSR   tDMSR       tDMSR   ttDMSR          ttDMSR          ttDMSR      ttDMSR      ttDMSR      ttDMSR  ttDMSR  ttDMSR      ttDMSR  
+process                             ttDM_Chi1_PS    tDM_Chi1_PS     TTbarDL     TTbarSL     DYJetsToLL  ttV     ttZ     ST          VV      ttDM_Chi1_PS    tDM_Chi1_PS     TTbarDL     TTbarSL     DYJetsToLL  ttV     ttZ     ST          VV      
+process                             -1              0               1           2           3           4       9       5           6       -1              0               1           2           3           4       9       5           6       
+rate                                -1              -1              -1          -1          -1          -1      -1      -1          -1      -1              -1              -1          -1          -1          -1      -1      -1          -1      
+--------------------------------
+lumi18_13TeV                lnN     1.025           1.025           1.025       1.025       1.025       1.025   -       1.025       1.025   1.025           1.025           1.025       1.025       1.025       1.025   -       1.025       1.025
+QCDScale_ttDM               shape   1               0               0           0           0           0       0       0           0       1               0               0           0           0           0       0       0           0
+QCDScale_tDM                lnN     0               1.3             0           0           0           0       0       0           0       0               1.3             0           0           0           0       0       0           0
+QCDScale_TTbarDL            shape   0               0               1           0           0           0       0       0           0       0               0               1           0           0           0       0       0           0
+QCDScale_TTbarSL            shape   0               0               0           1           0           0       0       0           0       0               0               0           1           0           0       0       0           0
+QCDScale_DYJetsToLL         shape   0               0               0           0           1           0       0       0           0       0               0               0           0           1           0       0       0           0
+QCDScale_ttV                shape   0               0               0           0           0           1       0       0           0       0               0               0           0           0           1       0       0           0
+QCDScale_ttZ                shape   0               0               0           0           0           0       1       0           0       0               0               0           0           0           0       1       0           0
+QCDScale_ST                 shape   0               0               0           0           0           0       0       1           0       0               0               0           0           0           0       0       1           0
+QCDScale_VV                 shape   0               0               0           0           0           0       0       0           1       0               0               0           0           0           0       0       0           1
+CMS_PSisr                   shape   0               0               1           0           0           0       0       0           0       0               0               1           0           0           0       0       0           0
+CMS_PSfsr                   shape   0               0               1           0           0           0       0       0           0       0               0               1           0           0           0       0       0           0
+CMS_eff_e0                  shape   1               1               1           1           1           1       1       1           1       1               1               1           1           1           1       1       1           1
+CMS_eff_e1                  shape   1               1               1           1           1           1       1       1           1       1               1               1           1           1           1       1       1           1
+CMS_eff_m0                  shape   1               1               1           1           1           1       1       1           1       1               1               1           1           1           1       1       1           1
+CMS_eff_m1                  shape   1               1               1           1           1           1       1       1           1       1               1               1           1           1           1       1       1           1
+CMS_eff_b_corr              shape   1               1               1           1           1           1       1       1           1       1               1               1           1           1           1       1       1           1
+CMS_eff_b_light_corr        shape   1               1               1           1           1           1       1       1           1       1               1               1           1           1           1       1       1           1
+CMS_eff_b_2018              shape   1               1               1           1           1           1       1       1           1       1               1               1           1           1           1       1       1           1
+CMS_eff_b_light_2018        shape   1               1               1           1           1           1       1       1           1       1               1               1           1           1           1       1       1           1
+CMS_scale_pu                shape   1               1               1           1           1           1       1       1           1       1               1               1           1           1           1       1       1           1
+CMS_eff_dilep_trigger       shape   1               1               1           1           1           1       1       1           1       1               1               1           1           1           1       1       1           1
+CMS_pdf                     shape   1               0               1           1           1           1       1       1           1       1               0               1           1           1           1       1       1           1
+CMS_pdf_alpha_s             shape   1               0               1           1           1           1       1       1           1       1               0               1           1           1           1       1       1           1
+DYsf_2018                   shape   0               0               0           0           1           0       0       0           0       0               0               0           0           1           0       0       0           0
+CMS_res_j_2018              shape   -               -               1           -           -           -       -       -           -       -               -               1           -           -           -       -       -           -
+CMS_scaleAbsoluteMPFBias_j  shape   -               -               1           -           -           -       -       -           -       -               -               1           -           -           -       -       -           -
+CMS_scaleAbsoluteScale_j    shape   -               -               1           -           -           -       -       -           -       -               -               1           -           -           -       -       -           -
+CMS_scaleAbsoluteStat_j     shape   -               -               1           -           -           -       -       -           -       -               -               1           -           -           -       -       -           -
+CMS_scaleFlavorQCD_j        shape   -               -               1           -           -           -       -       -           -       -               -               1           -           -           -       -       -           -
+CMS_scaleFragmentation_j    shape   -               -               1           -           -           -       -       -           -       -               -               1           -           -           -       -       -           -
+CMS_scalePileUpDataMC_j     shape   -               -               1           -           -           -       -       -           -       -               -               1           -           -           -       -       -           -
+CMS_scalePileUpPtBB_j       shape   -               -               1           -           -           -       -       -           -       -               -               1           -           -           -       -       -           -
+CMS_scalePileUpPtEC1_j      shape   -               -               1           -           -           -       -       -           -       -               -               1           -           -           -       -       -           -
+CMS_scalePileUpPtRef_j      shape   -               -               1           -           -           -       -       -           -       -               -               1           -           -           -       -       -           -
+CMS_scaleRelativeFSR_j      shape   -               -               1           -           -           -       -       -           -       -               -               1           -           -           -       -       -           -
+CMS_scaleRelativeJEREC1_j   shape   -               -               1           -           -           -       -       -           -       -               -               1           -           -           -       -       -           -
+CMS_scaleRelativePtBB_j     shape   -               -               1           -           -           -       -       -           -       -               -               1           -           -           -       -       -           -
+CMS_scaleRelativePtEC1_j    shape   -               -               1           -           -           -       -       -           -       -               -               1           -           -           -       -       -           -
+CMS_scaleRelativeBal_j      shape   -               -               1           -           -           -       -       -           -       -               -               1           -           -           -       -       -           -
+CMS_scaleRelativeSample_j   shape   -               -               1           -           -           -       -       -           -       -               -               1           -           -           -       -       -           -
+CMS_scaleRelativeStatEC_j   shape   -               -               1           -           -           -       -       -           -       -               -               1           -           -           -       -       -           -
+CMS_scaleRelativeStatFSR_j  shape   -               -               1           -           -           -       -       -           -       -               -               1           -           -           -       -       -           -
+CMS_scaleSinglePionECAL_j   shape   -               -               1           -           -           -       -       -           -       -               -               1           -           -           -       -       -           -
+CMS_scaleSinglePionHCAL_j   shape   -               -               1           -           -           -       -       -           -       -               -               1           -           -           -       -       -           -
+CMS_scaleTimePtEta_j        shape   -               -               1           -           -           -       -       -           -       -               -               1           -           -           -       -       -           -
+CMS_UncMET_2018             shape   -               -               1           -           -           -       -       -           -       -               -               1           -           -           -       -       -           -
+
+tDMSR      autoMCStats         100
+ttDMSR     autoMCStats         100
+
+ttz_norm rateParam * ttZ 1 [0.5,2]

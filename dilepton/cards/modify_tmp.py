@@ -1,4 +1,5 @@
 import os
+import numpy as np
 
 def split_line(line):
     ret = []
@@ -19,26 +20,33 @@ dirs = ["2016", "2017", "2018", "2016_tDM", "2016_ttDM",  "2017_tDM", "2017_ttDM
 for d in dirs:
     for _file in os.listdir(d):
         with open(os.path.join(d, _file)) as f:
-            ttbar_idxs = []
+            SLidxs = []
             lines = f.readlines()
-            for line in lines:
-                if line.startswith("process"):
-                    if len(ttbar_idxs) == 0:
-                        split = split_line(line)
-                        ttbar_idxs = [i for i, strg in enumerate(split) if strg.startswith("TTbarDL")]
-                    else:
-                        split_nums = split_line(line)
-                        ttbar_num = int(split_nums[ttbar_idxs[0]])
-
             block_num = 0
             with open("tmp.txt", "w") as wf:
                 for line in lines:
-                    if line.startswith("CMS_PS"):
-                        split = split_line(line)
-                        line = ""
-                        for i, chunk in enumerate(split):
-                            if i - 1 not in ttbar_idxs:
-                                chunk = chunk.replace("1", "0")
-                            line += chunk
-                    wf.write(line)
+                    if line.startswith("process") and len(SLidxs) == 0:
+                        splits = [s for s in line.split(" ") if s != ""]
+                        SLidxs = np.where(np.array(splits) == "TTbarSL")[0]
+                    if line.startswith("QCDScale"):
+                        sysname = line.split(" ")[0]
+                        samp = sysname.split("_")[1]
+                        if samp == "TTbarDL":
+                            newline = ""
+                            i = 0
+                            for c in line:
+                                if c == "0" or c == "1":
+                                    i += 1
+                                    if i in SLidxs:
+                                        c = "1"
+                                newline += c
+                            wf.write(newline.replace(sysname, "QCDScale_ren_TT "))
+                            wf.write(newline.replace(sysname, "QCDScale_fac_TT "))
+                        elif samp == "tDM":
+                            wf.write(line)
+                        elif samp != "TTbarSL":
+                            wf.write(line.replace(sysname + "    ", "QCDScale_ren_" + samp))
+                            wf.write(line.replace(sysname + "    ", "QCDScale_fac_" + samp))
+                    else:
+                        wf.write(line)
         os.replace("tmp.txt", os.path.join(d, _file))

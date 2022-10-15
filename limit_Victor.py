@@ -59,7 +59,7 @@ if options.signal=="":
     sys.exit(2)
 
 
-signals = [10, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+signals = [50, 100, 150, 200, 250, 300, 350, 400, 450, 500]
 
 
 try: os.stat('plotsLimit_'+options.name)
