@@ -1,0 +1,11 @@
+combineCards.py bin_2016=2016/DL_SR_scalar.txt bin_2016_ttZ=2016/DL_ttZCR_scalar.txt bin_2017=2017/DL_SR_scalar.txt bin_2017_ttZ=2017/DL_ttZCR_scalar.txt bin_2018=2018/DL_SR_scalar.txt bin_2018_ttZ=2018/DL_ttZCR_scalar.txt > full_run2_scalar.txt
+combineCards.py bin_2016=2016/DL_SR_pseudo.txt bin_2016_ttZ=2016/DL_ttZCR_pseudo.txt bin_2017=2017/DL_SR_pseudo.txt bin_2017_ttZ=2017/DL_ttZCR_pseudo.txt bin_2018=2018/DL_SR_pseudo.txt bin_2018_ttZ=2018/DL_ttZCR_pseudo.txt > full_run2_pseudo.txt
+
+combineCards.py bin_2016=2016/DL_SR_scalar.txt bin_2016_ttZ=2016/DL_ttZCR.txt bin_2017=2017/DL_SR_scalar.txt bin_2017_ttZ=2017/DL_ttZCR.txt bin_2018=2018/DL_SR_scalar.txt bin_2018_ttZ=2018/DL_ttZCR.txt > full_run2_scalar.txt
+combineCards.py bin_2016=2016/DL_SR_pseudo.txt bin_2016_ttZ=2016/DL_ttZCR.txt bin_2017=2017/DL_SR_pseudo.txt bin_2017_ttZ=2017/DL_ttZCR.txt bin_2018=2018/DL_SR_pseudo.txt bin_2018_ttZ=2018/DL_ttZCR.txt > full_run2_pseudo.txt
+
+combineCards.py bin_2016=2016_ttDM/DL_SR_scalar.txt bin_2016_ttZ=2016_ttDM/DL_ttZCR.txt bin_2017=2017_ttDM/DL_SR_scalar.txt bin_2017_ttZ=2017_ttDM/DL_ttZCR.txt bin_2018=2018_ttDM/DL_SR_scalar.txt bin_2018_ttZ=2018_ttDM/DL_ttZCR.txt > full_run2_scalar_ttDM.txt
+combineCards.py bin_2016=2016_ttDM/DL_SR_pseudo.txt bin_2016_ttZ=2016_ttDM/DL_ttZCR.txt bin_2017=2017_ttDM/DL_SR_pseudo.txt bin_2017_ttZ=2017_ttDM/DL_ttZCR.txt bin_2018=2018_ttDM/DL_SR_pseudo.txt bin_2018_ttZ=2018_ttDM/DL_ttZCR.txt > full_run2_pseudo_ttDM.txt
+
+combineCards.py bin_2016=2016_tDM/DL_SR_scalar.txt bin_2016_ttZ=2016_tDM/DL_ttZCR.txt bin_2017=2017_tDM/DL_SR_scalar.txt bin_2017_ttZ=2017_tDM/DL_ttZCR.txt bin_2018=2018_tDM/DL_SR_scalar.txt bin_2018_ttZ=2018_tDM/DL_ttZCR.txt > full_run2_scalar_tDM.txt
+combineCards.py bin_2016=2016_tDM/DL_SR_pseudo.txt bin_2016_ttZ=2016_tDM/DL_ttZCR.txt bin_2017=2017_tDM/DL_SR_pseudo.txt bin_2017_ttZ=2017_tDM/DL_ttZCR.txt bin_2018=2018_tDM/DL_SR_pseudo.txt bin_2018_ttZ=2018_tDM/DL_ttZCR.txt > full_run2_pseudo_tDM.txt

@@ -28,9 +28,9 @@ year = options.year
 jobs = []
 
 #latest one used
-greenShape = ['CMS_res_j_'+year, 'CMS_WqcdWeightRen', 'CMS_WqcdWeightFac', 'CMS_WewkWeight', 'CMS_ZqcdWeightRen', 'CMS_ZqcdWeightFac', 'CMS_ZewkWeight', 'CMS_pdf', 'CMS_eff_b_corr', 'CMS_eff_b_light_corr', 'CMS_eff_b_'+year, 'CMS_eff_b_light_'+year, 'CMS_scale_pu', 'CMS_eff_met_trigger', 'QCDScale_ren_TT', 'QCDScale_fac_TT', 'QCDScale_ren_VV', 'QCDScale_fac_VV', 'preFire', 'CMS_eff_e', 'CMS_eff_m', 'CMS_trig_e', 'CMS_trig_m']
+#greenShape = ['CMS_res_j_'+year, 'CMS_WqcdWeightRen', 'CMS_WqcdWeightFac', 'CMS_WewkWeight', 'CMS_ZqcdWeightRen', 'CMS_ZqcdWeightFac', 'CMS_ZewkWeight', 'CMS_pdf', 'CMS_eff_b_corr', 'CMS_eff_b_light_corr', 'CMS_eff_b_'+year, 'CMS_eff_b_light_'+year, 'CMS_scale_pu', 'CMS_eff_met_trigger', 'QCDScale_ren_TT', 'QCDScale_fac_TT', 'QCDScale_ren_VV', 'QCDScale_fac_VV', 'preFire', 'CMS_eff_e', 'CMS_eff_m', 'CMS_trig_e', 'CMS_trig_m']
 
-#greenShape = ['CMS_res_j_'+year, 'CMS_WqcdWeightRen', 'CMS_WqcdWeightFac', 'CMS_WewkWeight', 'CMS_ZqcdWeightRen', 'CMS_ZqcdWeightFac', 'CMS_ZewkWeight', 'CMS_eff_b_corr', 'CMS_eff_b_light_corr', 'CMS_eff_b_'+year, 'CMS_eff_b_light_'+year, 'CMS_scale_pu', 'CMS_eff_met_trigger', 'QCDScale_ren_TT', 'QCDScale_fac_TT', 'QCDScale_ren_VV', 'QCDScale_fac_VV', 'preFire', 'CMS_eff_e', 'CMS_eff_m', 'CMS_trig_e', 'CMS_trig_m']
+greenShape = ['CMS_res_j_'+year, 'CMS_WqcdWeightRen', 'CMS_WqcdWeightFac', 'CMS_WewkWeight', 'CMS_ZqcdWeightRen', 'CMS_ZqcdWeightFac', 'CMS_ZewkWeight', 'CMS_pdf', 'CMS_eff_b_corr', 'CMS_eff_b_light_corr', 'CMS_eff_b_'+year, 'CMS_eff_b_light_'+year, 'CMS_scale_pu', 'CMS_eff_met_trigger', 'QCDScale_ren_TT', 'QCDScale_fac_TT', 'QCDScale_ren_VV', 'QCDScale_fac_VV', 'preFire', 'CMS_eff_lep', 'CMS_eff_lep_trigger']
 
 #greenShape = ['CMS_res_j_'+year, 'CMS_scale_j']
 
@@ -139,19 +139,19 @@ rateparam = {
     #Run2 tests
     #'rateTopAH' : 'ST',
     # #paper
-    'rateQCDAH' : 'QCD',
-    'rateTopAH' : 'TTbarSL',
-    'rateTopSL' : 'TTbarSL',
-    # 'rateTopSL' : 'TTTo2L2Nu', 
-    # 'rateTopAH' : 'TTToSemiLepton',
+    'rateQCDAH'+year : 'QCD',
+    # 'rateTopAH' : 'TTbarSL',
+    # 'rateTopSL' : 'TTbarSL',
+    'rateTopSL'+year : 'TTTo2L2Nu', 
+    'rateTopAH'+year : 'TTToSemiLepton',
     #'rateTop2lepAH' : 'TTTo2L2Nu',
     # 'ratetopsl' : 'TTTo2L2Nu',
 
-    'rateZjetsAH' : 'DYJetsToNuNu',
-    'rateZjetsAH_ZR' : 'DYJetsToLL', #will effectively be called rateZjetsAH
+    'rateZjetsAH'+year : 'DYJetsToNuNu',
+    'rateZjetsAH_ZR'+year : 'DYJetsToLL', #will effectively be called rateZjetsAH
 
-    'rateWjetsAH' : 'WJetsToLNu',
-    'rateWjetsSL' : 'WJetsToLNu',
+    'rateWjetsAH'+year : 'WJetsToLNu',
+    'rateWjetsSL'+year : 'WJetsToLNu',
 
 
 
@@ -368,9 +368,13 @@ def checkShape(cat, s, syst=''):
         return False
     isSame = True
     
-    if 'eff_e' in syst and '2m' in cat: 
+    if 'eff_e' in syst and 'm' in cat and '1e1m' not in cat: 
         return True
-    if 'eff_m' in syst and '2e' in cat: 
+    if 'eff_m' in syst and 'e' in cat and '1e1m' not in cat: 
+        return True
+    if 'trig_e' in syst and 'm' in cat and '1e1m' not in cat: 
+        return True
+    if 'trig_m' in syst and 'e' in cat and '1e1m' not in cat: 
         return True
     if 'CMS_W' in syst and 'TTbar' in s:
         return True
@@ -411,16 +415,16 @@ def fillLists():
         obj = key.ReadObj()
         if obj.IsA().InheritsFrom("TH1"):
             name = obj.GetName()
-            if 'DM' in name:
+            #if 'DM' in name:
             #if ('ttDM_' in name) and  ('tttDM' not in name) and ('scalar' in name):
-            #if ('ttDM_MChi1_MPhi125_scalar' in name):
+            if ('tttDM_MChi1_MPhi100_scalar' in name):
             #if ('DM_MChi1_MPhi125_scalar' in name) or ('DM_MChi1_MPhi100_scalar' in name):
             #if ('DM_MChi1_MPhi125_scalar') in name or ('DM_MChi1_MPhi100_scalar' in name) or ('DM_MChi1_MPhi150_scalar' in name):
                 sign.append( name )                
             ##paper
             #elif not "data_obs" in name and not "BkgSum" in name: back.append(name)
-            elif not "data_obs" in name and not "BkgSum" in name and not "TTTo2L2Nu" in name  and not "TTToSemiLepton" in name and not "TTV" in name and not "DM" in name: back.append(name)
-            #elif not "data_obs" in name and not "BkgSum" in name and not "TTbarSL" in name: back.append(name)
+            #elif not "data_obs" in name and not "BkgSum" in name and not "TTTo2L2Nu" in name  and not "TTToSemiLepton" in name and not "TTV" in name and not "DM" in name: back.append(name)
+            elif not "data_obs" in name and not "BkgSum" in name and not "TTbarSL" in name and not "DM" in name: back.append(name)
         # Categories (directories)
         if obj.IsFolder():
             subdir = obj.GetName()
