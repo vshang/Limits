@@ -28,9 +28,11 @@ year = options.year
 jobs = []
 
 #latest one used
+greenShape = ['CMS_res_j_'+year, 'CMS_WewkWeight', 'CMS_ZewkWeight', 'CMS_pdf', 'CMS_eff_b_corr', 'CMS_eff_b_light_corr', 'CMS_eff_b_'+year, 'CMS_eff_b_light_'+year, 'CMS_scale_pu', 'CMS_eff_met_trigger', 'QCDScale_ren_TT', 'QCDScale_fac_TT', 'QCDScale_ren_VV', 'QCDScale_fac_VV', 'preFire', 'CMS_eff_e', 'CMS_eff_m', 'CMS_trig_e', 'CMS_trig_m']
+
 #greenShape = ['CMS_res_j_'+year, 'CMS_WqcdWeightRen', 'CMS_WqcdWeightFac', 'CMS_WewkWeight', 'CMS_ZqcdWeightRen', 'CMS_ZqcdWeightFac', 'CMS_ZewkWeight', 'CMS_pdf', 'CMS_eff_b_corr', 'CMS_eff_b_light_corr', 'CMS_eff_b_'+year, 'CMS_eff_b_light_'+year, 'CMS_scale_pu', 'CMS_eff_met_trigger', 'QCDScale_ren_TT', 'QCDScale_fac_TT', 'QCDScale_ren_VV', 'QCDScale_fac_VV', 'preFire', 'CMS_eff_e', 'CMS_eff_m', 'CMS_trig_e', 'CMS_trig_m']
 
-greenShape = ['CMS_res_j_'+year, 'CMS_WqcdWeightRen', 'CMS_WqcdWeightFac', 'CMS_WewkWeight', 'CMS_ZqcdWeightRen', 'CMS_ZqcdWeightFac', 'CMS_ZewkWeight', 'CMS_pdf', 'CMS_eff_b_corr', 'CMS_eff_b_light_corr', 'CMS_eff_b_'+year, 'CMS_eff_b_light_'+year, 'CMS_scale_pu', 'CMS_eff_met_trigger', 'QCDScale_ren_TT', 'QCDScale_fac_TT', 'QCDScale_ren_VV', 'QCDScale_fac_VV', 'preFire', 'CMS_eff_lep', 'CMS_eff_lep_trigger']
+#greenShape = ['CMS_res_j_'+year, 'CMS_WqcdWeightRen', 'CMS_WqcdWeightFac', 'CMS_WewkWeight', 'CMS_ZqcdWeightRen', 'CMS_ZqcdWeightFac', 'CMS_ZewkWeight', 'CMS_pdf', 'CMS_eff_b_corr', 'CMS_eff_b_light_corr', 'CMS_eff_b_'+year, 'CMS_eff_b_light_'+year, 'CMS_scale_pu', 'CMS_eff_met_trigger', 'QCDScale_ren_TT', 'QCDScale_fac_TT', 'QCDScale_ren_VV', 'QCDScale_fac_VV', 'preFire', 'CMS_eff_lep', 'CMS_eff_lep_trigger']
 
 #greenShape = ['CMS_res_j_'+year, 'CMS_scale_j']
 
@@ -47,7 +49,8 @@ sign = []
 
 
 shape = []
-jesUnc = ['AbsoluteMPFBias', 'AbsoluteScale', 'AbsoluteStat', 'FlavorQCD', 'Fragmentation', 'PileUpDataMC', 'PileUpPtBB', 'PileUpPtEC1', 'PileUpPtEC2', 'PileUpPtHF', 'PileUpPtRef', 'RelativeFSR', 'RelativeJEREC1', 'RelativeJEREC2', 'RelativeJERHF', 'RelativePtBB', 'RelativePtEC1', 'RelativePtEC2', 'RelativePtHF', 'RelativeBal', 'RelativeSample', 'RelativeStatEC', 'RelativeStatFSR', 'RelativeStatHF', 'SinglePionECAL', 'SinglePionHCAL', 'TimePtEta']
+#jesUnc = ['AbsoluteMPFBias', 'AbsoluteScale', 'AbsoluteStat', 'FlavorQCD', 'Fragmentation', 'PileUpDataMC', 'PileUpPtBB', 'PileUpPtEC1', 'PileUpPtEC2', 'PileUpPtHF', 'PileUpPtRef', 'RelativeFSR', 'RelativeJEREC1', 'RelativeJEREC2', 'RelativeJERHF', 'RelativePtBB', 'RelativePtEC1', 'RelativePtEC2', 'RelativePtHF', 'RelativeBal', 'RelativeSample', 'RelativeStatEC', 'RelativeStatFSR', 'RelativeStatHF', 'SinglePionECAL', 'SinglePionHCAL', 'TimePtEta']
+jesUnc = ['AbsoluteMPFBias', 'AbsoluteScale', 'AbsoluteStat', 'FlavorQCD', 'Fragmentation', 'PileUpDataMC', 'PileUpPtBB', 'PileUpPtEC1', 'PileUpPtEC2', 'PileUpPtHF', 'PileUpPtRef', 'RelativeFSR']
 for unc in jesUnc:
     greenShape.append('CMS_scale'+unc+'_j')
 
@@ -111,6 +114,10 @@ norm = {
 if year == "2016":
     norm["lumi16_13TeV"] = {"VV" : 1.012, "ST" : 1.012, "DM" : 1.012}
     greenShape.append('CMS_UncMET_2016')
+    greenShape.append('CMS_WqcdWeightRen')
+    greenShape.append('CMS_WqcdWeightFac')
+    greenShape.append('CMS_ZqcdWeightRen')
+    greenShape.append('CMS_WqcdWeightFac')
 elif year == "2017":
     norm["lumi17_13TeV"] = {"VV" : 1.023, "ST" : 1.023, "DM" : 1.023}
     greenShape.append('CMS_UncMET_2017')

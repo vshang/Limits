@@ -41,6 +41,7 @@ CMS_eff_b_light_corr        shape   1      1       1       1           1       1
 CMS_eff_b_2016              shape   1      1       1       1           1       1           1       1
 CMS_eff_b_light_2016        shape   1      1       1       1           1       1           1       1
 CMS_scale_pu                shape   1      1       1       1           1       1           1       1
+CMS_eff_dilep_trigger       shape   1      1       1       1           1       1           1       1
 CMS_pdf                     shape   1      1       1       1           1       1           1       1
 CMS_res_j_2016              shape   1      1       1       1           1       1           1       1
 CMS_scaleAbsoluteMPFBias_j  shape   1      1       1       1           1       1           1       1

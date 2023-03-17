@@ -9,7 +9,7 @@ echo 'mass' $mass
 ulimit -s unlimited
 
 #workspace
-#text2workspace.py -m $mass --channel-masks $dir/$name.txt -o $dir/$name.root
+text2workspace.py -m $mass --channel-masks $dir/$name.txt -o $dir/$name.root
 
 #Danyer's settings
 # combineTool.py -M Impacts --expectSignal=0 --rMin -10 --rMax 10 -d $dir/$name.root -m $mass -t -1 --doInitialFit --robustFit 1 --X-rtd FITTER_NEVER_GIVE_UP --X-rtd FITTER_BOUND --X-rtd FITTER_NEW_CROSSING_ALGO --parallel 40
@@ -33,11 +33,18 @@ ulimit -s unlimited
 # pdftoppm -png -f 1 $dir/impacts_r0_$name.pdf $dir/impacts_r0_$name
 
 #r=1
-combineTool.py -M Impacts --expectSignal=1  --rMin -10 --rMax 10 -d $dir/$name.root -m $mass -t -1 --doInitialFit --robustFit 1 --parallel 40 
-combineTool.py -M Impacts --expectSignal=1  --rMin -10 --rMax 10 -d $dir/$name.root -m $mass -t -1 --robustFit 1 --doFits --parallel 40 --job-mode condor --dry-run
-# combineTool.py -M Impacts --expectSignal=1  -d $dir/$name.root -m $mass -t -1 -o $dir/impacts_r0_$name.json
-# plotImpacts.py -i $dir/impacts_r0_$name.json --cms-label Preliminary -o $dir/impacts_r0_$name
-# pdftoppm -png -f 1 $dir/impacts_r0_$name.pdf $dir/impacts_r0_$name
+# combineTool.py -M Impacts --expectSignal=1  --rMin -10 --rMax 10 -d $dir/$name.root -m $mass -t -1 --doInitialFit --robustFit 1 --parallel 40 
+# combineTool.py -M Impacts --expectSignal=1  --rMin -10 --rMax 10 -d $dir/$name.root -m $mass -t -1 --robustFit 1 --doFits --parallel 40 --job-mode condor --dry-run
+# combineTool.py -M Impacts --expectSignal=1  -d $dir/$name.root -m $mass -t -1 -o $dir/impacts_r1_$name.json
+# plotImpacts.py -i $dir/impacts_r1_$name.json --cms-label Preliminary -o $dir/impacts_r1_$name
+# pdftoppm -png -f 1 $dir/impacts_r1_$name.pdf $dir/impacts_r1_$name
+
+#Unblinding
+combineTool.py -M Impacts --rMin -10 --rMax 10 -d $dir/$name.root -m $mass --doInitialFit --robustFit 1 --parallel 40 
+combineTool.py -M Impacts --rMin -10 --rMax 10 -d $dir/$name.root -m $mass --robustFit 1 --doFits --parallel 40 --job-mode condor --dry-run
+# combineTool.py -M Impacts -d $dir/$name.root -m $mass -o $dir/impacts_r1_$name.json
+# plotImpacts.py -i $dir/impacts_unblinded_$name.json --cms-label Preliminary -o $dir/impacts_unblinded_$name
+# pdftoppm -png -f 1 $dir/impacts_unblinded_$name.pdf $dir/impacts_unblinded_$name
 
 
 #impacts
