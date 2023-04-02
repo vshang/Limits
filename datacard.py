@@ -437,9 +437,9 @@ def fillLists():
         obj = key.ReadObj()
         if obj.IsA().InheritsFrom("TH1"):
             name = obj.GetName()
-            #if 'DM' in name:
+            if 'DM' in name:
             #if ('ttDM_' in name) and  ('tttDM' not in name) and ('scalar' in name):
-            if ('tttDM_MChi1_MPhi100_scalar' in name):
+            #if ('tttDM_MChi1_MPhi100_scalar' in name):
             #if ('DM_MChi1_MPhi125_scalar' in name) or ('DM_MChi1_MPhi100_scalar' in name):
             #if ('DM_MChi1_MPhi125_scalar') in name or ('DM_MChi1_MPhi100_scalar' in name) or ('DM_MChi1_MPhi150_scalar' in name):
                 sign.append( name )                
