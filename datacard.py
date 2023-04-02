@@ -271,7 +271,7 @@ def datacard(cat, sign):
         for i, s in enumerate([sign] + back):
             issyst = False
             for n, nn in norm[k].iteritems():
-                if n in s and norm[k][n]>0 and checkNorm(cat, s):
+                if n in s and norm[k][n]>0 and (not checkNorm(cat, s)):
                     #print "--test ", n, s, cat
                     #if k=='CMS_eff_met_trigger' and not cat.startswith('AH0l'): continue
                     if 'preFire_1f' in k and not('1f' in cat): continue
@@ -437,9 +437,9 @@ def fillLists():
         obj = key.ReadObj()
         if obj.IsA().InheritsFrom("TH1"):
             name = obj.GetName()
-            if 'DM' in name:
+            #if 'DM' in name:
             #if ('ttDM_' in name) and  ('tttDM' not in name) and ('scalar' in name):
-            #if ('tttDM_MChi1_MPhi100_scalar' in name):
+            if ('tttDM_MChi1_MPhi100_scalar' in name):
             #if ('DM_MChi1_MPhi125_scalar' in name) or ('DM_MChi1_MPhi100_scalar' in name):
             #if ('DM_MChi1_MPhi125_scalar') in name or ('DM_MChi1_MPhi100_scalar' in name) or ('DM_MChi1_MPhi150_scalar' in name):
                 sign.append( name )                
