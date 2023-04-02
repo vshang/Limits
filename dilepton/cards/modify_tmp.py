@@ -16,16 +16,17 @@ def split_line(line):
     return ret
 
 
-dirs = ["2016", "2017", "2018", "2016_tDM", "2016_ttDM",  "2017_tDM", "2017_ttDM", "2018_tDM", "2018_ttDM"]
+dirs = ["2016", "2017", "2018"]
 for d in dirs:
-    #for _file in os.listdir(d):
-    with open(os.path.join(d, "DL_ttZCR.txt")) as f:
-        lines = f.readlines()
-        with open("tmp.txt", "w") as wf:
-            for line in lines:
-                if line.startswith("CMS_scale_pu"):
-                    wf.write(line)
-                    wf.write(line.replace("CMS_scale_pu         ", "CMS_eff_dilep_trigger"))
-                else:
-                    wf.write(line)
-    os.replace("tmp.txt", os.path.join(d, "DL_ttZCR.txt"))
+    for _file in os.listdir(d):
+        with open(os.path.join(d, _file)) as f:
+            lines = f.readlines()
+            with open("tmp.txt", "w") as wf:
+                for line in lines:
+                    if line.startswith("top_pt_rwght"):
+                        wf.write(line)
+                        wf.write(line.replace("top_pt_rwght",
+                                              "top_mass    ").replace("1   ", "0.33"))
+                    else:
+                        wf.write(line)
+        os.replace("tmp.txt", os.path.join(d, _file))

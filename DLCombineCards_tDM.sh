@@ -10,11 +10,6 @@ if [ ! -d "${RUNDIR}" ]; then
     mkdir $RUNDIR
 fi
 
-if [ ! -d "dilepton/cards/test/" ]; then 
-    echo "Adding test directory to dilepton/cards..."
-    mkdir dilepton/cards/test
-fi
-
 echo "Copying datacards..."
 cd combinedCards_${name}_RunII
 for card in tDM*_ALL.txt
@@ -27,7 +22,7 @@ done
 echo "Copied AH+SL RunII datacards."
 
 cd ../$RUNDIR
-if [ ! -d "dilepton/cards/test/" ]; then 
+if [ ! -d "dilepton/cards/tDM/" ]; then 
     echo "Making DL directory..."
     if [ ! -d "dilepton/" ]; then
 	mkdir dilepton
@@ -35,13 +30,13 @@ if [ ! -d "dilepton/cards/test/" ]; then
     cd dilepton
     mkdir cards
     cd cards
-    mkdir test
+    mkdir tDM
     cd ../..
 fi
 
 
-scp ../dilepton/cards/full_run2_scalar_tDM.txt dilepton/cards/test/full_run2_scalar_tDM.txt
-scp ../dilepton/cards/full_run2_pseudo_tDM.txt dilepton/cards/test/full_run2_pseudo_tDM.txt
+scp ../dilepton/cards/tDM/full_run2_tDM_scalar.txt dilepton/cards/tDM/full_run2_tDM_scalar.txt
+scp ../dilepton/cards/tDM/full_run2_tDM_pseudo.txt dilepton/cards/tDM/full_run2_tDM_pseudo.txt
 echo "Copied DL RunII datacards."
 
 echo "Merging datacards..."
@@ -50,7 +45,7 @@ do
     if [[ "$card" == *"_MChi1_MPhi125"* ]]; then
 	continue
     fi
-    combineCards.py AHSL=$card DL=dilepton/cards/test/full_run2_scalar_tDM.txt > ${card/_RunII.txt/.txt}
+    combineCards.py AHSL=$card DL=dilepton/cards/tDM/full_run2_tDM_scalar.txt > ${card/_RunII.txt/.txt}
     echo "done ${card/_RunII.txt/.txt}"
 done
 
@@ -59,7 +54,7 @@ do
     if [[ "$card" == *"_MChi1_MPhi125"* ]]; then
 	continue
     fi
-    combineCards.py AHSL=$card DL=dilepton/cards/test/full_run2_pseudo_tDM.txt > ${card/_RunII.txt/.txt}
+    combineCards.py AHSL=$card DL=dilepton/cards/tDM/full_run2_tDM_pseudo.txt > ${card/_RunII.txt/.txt}
     echo "done ${card/_RunII.txt/.txt}"
 done
 

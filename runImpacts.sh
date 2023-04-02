@@ -27,17 +27,24 @@ ulimit -s unlimited
 
 #r=0
 # combineTool.py -M Impacts --expectSignal=0  --rMin -10 --rMax 10 -d $dir/$name.root -m $mass -t -1 --doInitialFit --robustFit 1 --parallel 40 
-# combineTool.py -M Impacts --expectSignal=0  --rMin -10 --rMax 10 -d $dir/$name.root -m $mass -t -1 --robustFit 1 --doFits --parallel 40
-combineTool.py -M Impacts --expectSignal=0  -d $dir/$name.root -m $mass -t -1 -o $dir/impacts_r0_$name.json
-plotImpacts.py -i $dir/impacts_r0_$name.json --cms-label Preliminary -o $dir/impacts_r0_$name
+# combineTool.py -M Impacts --expectSignal=0  --rMin -10 --rMax 10 -d $dir/$name.root -m $mass -t -1 --robustFit 1 --doFits --parallel 40 --job-mode condor --dry-run
+# combineTool.py -M Impacts --expectSignal=0  -d $dir/$name.root -m $mass -t -1 -o $dir/impacts_r0_$name.json
+# plotImpacts.py -i $dir/impacts_r0_$name.json --cms-label Preliminary -o $dir/impacts_r0_$name
 # pdftoppm -png -f 1 $dir/impacts_r0_$name.pdf $dir/impacts_r0_$name
 
-# #r=1
+#r=1
 # combineTool.py -M Impacts --expectSignal=1  --rMin -10 --rMax 10 -d $dir/$name.root -m $mass -t -1 --doInitialFit --robustFit 1 --parallel 40 
-# combineTool.py -M Impacts --expectSignal=1  --rMin -10 --rMax 10 -d $dir/$name.root -m $mass -t -1 --robustFit 1 --doFits --parallel 40
+# combineTool.py -M Impacts --expectSignal=1  --rMin -10 --rMax 10 -d $dir/$name.root -m $mass -t -1 --robustFit 1 --doFits --parallel 40 --job-mode condor --dry-run
 # combineTool.py -M Impacts --expectSignal=1  -d $dir/$name.root -m $mass -t -1 -o $dir/impacts_r1_$name.json
 # plotImpacts.py -i $dir/impacts_r1_$name.json --cms-label Preliminary -o $dir/impacts_r1_$name
 # pdftoppm -png -f 1 $dir/impacts_r1_$name.pdf $dir/impacts_r1_$name
+
+#Unblinding
+# combineTool.py -M Impacts --rMin -10 --rMax 10 -d $dir/$name.root -m $mass --doInitialFit --robustFit 1 --parallel 40 
+# combineTool.py -M Impacts --rMin -10 --rMax 10 -d $dir/$name.root -m $mass --robustFit 1 --doFits --parallel 40 --job-mode condor --dry-run
+combineTool.py -M Impacts -d $dir/$name.root -m $mass -o $dir/impacts_unblinded_$name.json
+plotImpacts.py -i $dir/impacts_unblinded_$name.json --cms-label Preliminary -o $dir/impacts_unblinded_$name
+# pdftoppm -png -f 1 $dir/impacts_unblinded_$name.pdf $dir/impacts_unblinded_$name
 
 
 #impacts

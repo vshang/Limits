@@ -49,8 +49,10 @@ sign = []
 
 
 shape = []
-#jesUnc = ['AbsoluteMPFBias', 'AbsoluteScale', 'AbsoluteStat', 'FlavorQCD', 'Fragmentation', 'PileUpDataMC', 'PileUpPtBB', 'PileUpPtEC1', 'PileUpPtEC2', 'PileUpPtHF', 'PileUpPtRef', 'RelativeFSR', 'RelativeJEREC1', 'RelativeJEREC2', 'RelativeJERHF', 'RelativePtBB', 'RelativePtEC1', 'RelativePtEC2', 'RelativePtHF', 'RelativeBal', 'RelativeSample', 'RelativeStatEC', 'RelativeStatFSR', 'RelativeStatHF', 'SinglePionECAL', 'SinglePionHCAL', 'TimePtEta']
-jesUnc = ['AbsoluteMPFBias', 'AbsoluteScale', 'AbsoluteStat', 'FlavorQCD', 'Fragmentation', 'PileUpDataMC', 'PileUpPtBB', 'PileUpPtEC1', 'PileUpPtEC2', 'PileUpPtHF', 'PileUpPtRef', 'RelativeFSR']
+jesUnc = ['AbsoluteMPFBias', 'AbsoluteScale', 'AbsoluteStat', 'FlavorQCD', 'Fragmentation', 'PileUpDataMC', 'PileUpPtBB', 'PileUpPtEC1', 'PileUpPtEC2', 'PileUpPtHF', 'PileUpPtRef', 'RelativeFSR', 'RelativeJEREC1', 'RelativeJEREC2', 'RelativeJERHF', 'RelativePtBB', 'RelativePtEC1', 'RelativePtEC2', 'RelativePtHF', 'RelativeBal', 'RelativeSample', 'RelativeStatEC', 'RelativeStatFSR', 'RelativeStatHF', 'SinglePionECAL', 'SinglePionHCAL', 'TimePtEta']
+#jesUnc = ['AbsoluteMPFBias', 'AbsoluteScale', 'AbsoluteStat', 'FlavorQCD', 'Fragmentation', 'PileUpDataMC', 'PileUpPtBB', 'PileUpPtEC1', 'PileUpPtEC2', 'PileUpPtHF', 'PileUpPtRef', 'RelativeFSR']
+#jesUnc = ['AbsoluteMPFBias', 'AbsoluteScale', 'AbsoluteStat', 'FlavorQCD', 'Fragmentation', 'PileUpDataMC', 'PileUpPtBB', 'PileUpPtEC1', 'PileUpPtEC2', 'PileUpPtHF', 'PileUpPtRef', 'RelativeFSR', 'RelativeJEREC1', 'RelativeJEREC2', 'RelativeJERHF', 'RelativePtBB', 'RelativePtEC1', 'RelativePtEC2', 'RelativePtHF', 'RelativeBal', 'RelativeSample', 'RelativeStatEC', 'RelativeStatFSR', 'RelativeStatHF']
+#jesUnc = ['RelativeJEREC1', 'RelativeJEREC2', 'RelativeJERHF', 'RelativePtBB', 'RelativePtEC1', 'RelativePtEC2', 'RelativePtHF', 'RelativeBal', 'RelativeSample', 'RelativeStatEC', 'RelativeStatFSR', 'RelativeStatHF', 'SinglePionECAL', 'SinglePionHCAL', 'TimePtEta']
 for unc in jesUnc:
     greenShape.append('CMS_scale'+unc+'_j')
 
@@ -117,7 +119,7 @@ if year == "2016":
     greenShape.append('CMS_WqcdWeightRen')
     greenShape.append('CMS_WqcdWeightFac')
     greenShape.append('CMS_ZqcdWeightRen')
-    greenShape.append('CMS_WqcdWeightFac')
+    greenShape.append('CMS_ZqcdWeightFac')
 elif year == "2017":
     norm["lumi17_13TeV"] = {"VV" : 1.023, "ST" : 1.023, "DM" : 1.023}
     greenShape.append('CMS_UncMET_2017')
@@ -269,7 +271,7 @@ def datacard(cat, sign):
         for i, s in enumerate([sign] + back):
             issyst = False
             for n, nn in norm[k].iteritems():
-                if n in s and norm[k][n]>0:
+                if n in s and norm[k][n]>0 and checkNorm(cat, s):
                     #print "--test ", n, s, cat
                     #if k=='CMS_eff_met_trigger' and not cat.startswith('AH0l'): continue
                     if 'preFire_1f' in k and not('1f' in cat): continue
@@ -409,6 +411,19 @@ def checkShape(cat, s, syst=''):
     #     isSame = False
     return isSame
 
+#Only apply logN norm systematic if nominal hist contains positive entries
+def checkNorm(cat, s):
+    f = TFile("rootfiles_"+options.name+"/"+cat+".root", "READ")
+    h = f.Get(s)
+
+    if h==None:
+        print "***** WARNING: nominal hist does not exist!!"
+        return True
+    if h.Integral()<1.e-20:
+        return True
+    f.Close()
+    return False
+
 def fillLists():
     # List files and fill categories
     for c in os.listdir('rootfiles_'+options.name+'/'):
@@ -422,9 +437,9 @@ def fillLists():
         obj = key.ReadObj()
         if obj.IsA().InheritsFrom("TH1"):
             name = obj.GetName()
-            #if 'DM' in name:
+            if 'DM' in name:
             #if ('ttDM_' in name) and  ('tttDM' not in name) and ('scalar' in name):
-            if ('tttDM_MChi1_MPhi100_scalar' in name):
+            #if ('tttDM_MChi1_MPhi100_scalar' in name):
             #if ('DM_MChi1_MPhi125_scalar' in name) or ('DM_MChi1_MPhi100_scalar' in name):
             #if ('DM_MChi1_MPhi125_scalar') in name or ('DM_MChi1_MPhi100_scalar' in name) or ('DM_MChi1_MPhi150_scalar' in name):
                 sign.append( name )                
@@ -435,7 +450,11 @@ def fillLists():
         # Categories (directories)
         if obj.IsFolder():
             subdir = obj.GetName()
-            subdir = subdir.replace('Up', '').replace('Down', '')
+            #Fix for adding PileUp JES shape systematics correctly
+            if 'PileUp' in subdir:
+                subdir = subdir.replace('jUp', 'j').replace('jDown', 'j')
+            else:
+                subdir = subdir.replace('Up', '').replace('Down', '')
             if not subdir in greenShape: continue
             if not subdir in shape: 
                 shape.append(subdir)

@@ -1,0 +1,118 @@
+Making full combination datacards (AH+SL+DL) for tDM...
+Copying datacards...
+Copied AH+SL RunII datacards.
+cp: cannot stat '../dilepton/cards/tDM/full_run2_scalar_tDM.txt': No such file or directory
+cp: cannot stat '../dilepton/cards/tDM/full_run2_pseudo_tDM.txt': No such file or directory
+Copied DL RunII datacards.
+Merging datacards...
+Traceback (most recent call last):
+  File "/afs/hep.wisc.edu/user/vshang/public/tDM_nanoAOD/CMSSW_8_0_26_patch1/bin/slc7_amd64_gcc530/combineCards.py", line 50, in <module>
+    file = open(fname, "r")
+IOError: [Errno 2] No such file or directory: 'dilepton/cards/tDM/full_run2_scalar_tDM.txt'
+done tDM_MChi1_MPhi100_scalar1b2b_ALL.txt
+Traceback (most recent call last):
+  File "/afs/hep.wisc.edu/user/vshang/public/tDM_nanoAOD/CMSSW_8_0_26_patch1/bin/slc7_amd64_gcc530/combineCards.py", line 50, in <module>
+    file = open(fname, "r")
+IOError: [Errno 2] No such file or directory: 'dilepton/cards/tDM/full_run2_scalar_tDM.txt'
+done tDM_MChi1_MPhi10_scalar1b2b_ALL.txt
+Traceback (most recent call last):
+  File "/afs/hep.wisc.edu/user/vshang/public/tDM_nanoAOD/CMSSW_8_0_26_patch1/bin/slc7_amd64_gcc530/combineCards.py", line 50, in <module>
+    file = open(fname, "r")
+IOError: [Errno 2] No such file or directory: 'dilepton/cards/tDM/full_run2_scalar_tDM.txt'
+done tDM_MChi1_MPhi150_scalar1b2b_ALL.txt
+Traceback (most recent call last):
+  File "/afs/hep.wisc.edu/user/vshang/public/tDM_nanoAOD/CMSSW_8_0_26_patch1/bin/slc7_amd64_gcc530/combineCards.py", line 50, in <module>
+    file = open(fname, "r")
+IOError: [Errno 2] No such file or directory: 'dilepton/cards/tDM/full_run2_scalar_tDM.txt'
+done tDM_MChi1_MPhi200_scalar1b2b_ALL.txt
+Traceback (most recent call last):
+  File "/afs/hep.wisc.edu/user/vshang/public/tDM_nanoAOD/CMSSW_8_0_26_patch1/bin/slc7_amd64_gcc530/combineCards.py", line 50, in <module>
+    file = open(fname, "r")
+IOError: [Errno 2] No such file or directory: 'dilepton/cards/tDM/full_run2_scalar_tDM.txt'
+done tDM_MChi1_MPhi250_scalar1b2b_ALL.txt
+Traceback (most recent call last):
+  File "/afs/hep.wisc.edu/user/vshang/public/tDM_nanoAOD/CMSSW_8_0_26_patch1/bin/slc7_amd64_gcc530/combineCards.py", line 50, in <module>
+    file = open(fname, "r")
+IOError: [Errno 2] No such file or directory: 'dilepton/cards/tDM/full_run2_scalar_tDM.txt'
+done tDM_MChi1_MPhi300_scalar1b2b_ALL.txt
+Traceback (most recent call last):
+  File "/afs/hep.wisc.edu/user/vshang/public/tDM_nanoAOD/CMSSW_8_0_26_patch1/bin/slc7_amd64_gcc530/combineCards.py", line 50, in <module>
+    file = open(fname, "r")
+IOError: [Errno 2] No such file or directory: 'dilepton/cards/tDM/full_run2_scalar_tDM.txt'
+done tDM_MChi1_MPhi350_scalar1b2b_ALL.txt
+Traceback (most recent call last):
+  File "/afs/hep.wisc.edu/user/vshang/public/tDM_nanoAOD/CMSSW_8_0_26_patch1/bin/slc7_amd64_gcc530/combineCards.py", line 50, in <module>
+    file = open(fname, "r")
+IOError: [Errno 2] No such file or directory: 'dilepton/cards/tDM/full_run2_scalar_tDM.txt'
+done tDM_MChi1_MPhi400_scalar1b2b_ALL.txt
+Traceback (most recent call last):
+  File "/afs/hep.wisc.edu/user/vshang/public/tDM_nanoAOD/CMSSW_8_0_26_patch1/bin/slc7_amd64_gcc530/combineCards.py", line 50, in <module>
+    file = open(fname, "r")
+IOError: [Errno 2] No such file or directory: 'dilepton/cards/tDM/full_run2_scalar_tDM.txt'
+done tDM_MChi1_MPhi450_scalar1b2b_ALL.txt
+Traceback (most recent call last):
+  File "/afs/hep.wisc.edu/user/vshang/public/tDM_nanoAOD/CMSSW_8_0_26_patch1/bin/slc7_amd64_gcc530/combineCards.py", line 50, in <module>
+    file = open(fname, "r")
+IOError: [Errno 2] No such file or directory: 'dilepton/cards/tDM/full_run2_scalar_tDM.txt'
+done tDM_MChi1_MPhi500_scalar1b2b_ALL.txt
+Traceback (most recent call last):
+  File "/afs/hep.wisc.edu/user/vshang/public/tDM_nanoAOD/CMSSW_8_0_26_patch1/bin/slc7_amd64_gcc530/combineCards.py", line 50, in <module>
+    file = open(fname, "r")
+IOError: [Errno 2] No such file or directory: 'dilepton/cards/tDM/full_run2_scalar_tDM.txt'
+done tDM_MChi1_MPhi50_scalar1b2b_ALL.txt
+Traceback (most recent call last):
+  File "/afs/hep.wisc.edu/user/vshang/public/tDM_nanoAOD/CMSSW_8_0_26_patch1/bin/slc7_amd64_gcc530/combineCards.py", line 50, in <module>
+    file = open(fname, "r")
+IOError: [Errno 2] No such file or directory: 'dilepton/cards/tDM/full_run2_pseudo_tDM.txt'
+done tDM_MChi1_MPhi100_pseudo1b2b_ALL.txt
+Traceback (most recent call last):
+  File "/afs/hep.wisc.edu/user/vshang/public/tDM_nanoAOD/CMSSW_8_0_26_patch1/bin/slc7_amd64_gcc530/combineCards.py", line 50, in <module>
+    file = open(fname, "r")
+IOError: [Errno 2] No such file or directory: 'dilepton/cards/tDM/full_run2_pseudo_tDM.txt'
+done tDM_MChi1_MPhi10_pseudo1b2b_ALL.txt
+Traceback (most recent call last):
+  File "/afs/hep.wisc.edu/user/vshang/public/tDM_nanoAOD/CMSSW_8_0_26_patch1/bin/slc7_amd64_gcc530/combineCards.py", line 50, in <module>
+    file = open(fname, "r")
+IOError: [Errno 2] No such file or directory: 'dilepton/cards/tDM/full_run2_pseudo_tDM.txt'
+done tDM_MChi1_MPhi150_pseudo1b2b_ALL.txt
+Traceback (most recent call last):
+  File "/afs/hep.wisc.edu/user/vshang/public/tDM_nanoAOD/CMSSW_8_0_26_patch1/bin/slc7_amd64_gcc530/combineCards.py", line 50, in <module>
+    file = open(fname, "r")
+IOError: [Errno 2] No such file or directory: 'dilepton/cards/tDM/full_run2_pseudo_tDM.txt'
+done tDM_MChi1_MPhi200_pseudo1b2b_ALL.txt
+Traceback (most recent call last):
+  File "/afs/hep.wisc.edu/user/vshang/public/tDM_nanoAOD/CMSSW_8_0_26_patch1/bin/slc7_amd64_gcc530/combineCards.py", line 50, in <module>
+    file = open(fname, "r")
+IOError: [Errno 2] No such file or directory: 'dilepton/cards/tDM/full_run2_pseudo_tDM.txt'
+done tDM_MChi1_MPhi250_pseudo1b2b_ALL.txt
+Traceback (most recent call last):
+  File "/afs/hep.wisc.edu/user/vshang/public/tDM_nanoAOD/CMSSW_8_0_26_patch1/bin/slc7_amd64_gcc530/combineCards.py", line 50, in <module>
+    file = open(fname, "r")
+IOError: [Errno 2] No such file or directory: 'dilepton/cards/tDM/full_run2_pseudo_tDM.txt'
+done tDM_MChi1_MPhi300_pseudo1b2b_ALL.txt
+Traceback (most recent call last):
+  File "/afs/hep.wisc.edu/user/vshang/public/tDM_nanoAOD/CMSSW_8_0_26_patch1/bin/slc7_amd64_gcc530/combineCards.py", line 50, in <module>
+    file = open(fname, "r")
+IOError: [Errno 2] No such file or directory: 'dilepton/cards/tDM/full_run2_pseudo_tDM.txt'
+done tDM_MChi1_MPhi350_pseudo1b2b_ALL.txt
+Traceback (most recent call last):
+  File "/afs/hep.wisc.edu/user/vshang/public/tDM_nanoAOD/CMSSW_8_0_26_patch1/bin/slc7_amd64_gcc530/combineCards.py", line 50, in <module>
+    file = open(fname, "r")
+IOError: [Errno 2] No such file or directory: 'dilepton/cards/tDM/full_run2_pseudo_tDM.txt'
+done tDM_MChi1_MPhi400_pseudo1b2b_ALL.txt
+Traceback (most recent call last):
+  File "/afs/hep.wisc.edu/user/vshang/public/tDM_nanoAOD/CMSSW_8_0_26_patch1/bin/slc7_amd64_gcc530/combineCards.py", line 50, in <module>
+    file = open(fname, "r")
+IOError: [Errno 2] No such file or directory: 'dilepton/cards/tDM/full_run2_pseudo_tDM.txt'
+done tDM_MChi1_MPhi450_pseudo1b2b_ALL.txt
+Traceback (most recent call last):
+  File "/afs/hep.wisc.edu/user/vshang/public/tDM_nanoAOD/CMSSW_8_0_26_patch1/bin/slc7_amd64_gcc530/combineCards.py", line 50, in <module>
+    file = open(fname, "r")
+IOError: [Errno 2] No such file or directory: 'dilepton/cards/tDM/full_run2_pseudo_tDM.txt'
+done tDM_MChi1_MPhi500_pseudo1b2b_ALL.txt
+Traceback (most recent call last):
+  File "/afs/hep.wisc.edu/user/vshang/public/tDM_nanoAOD/CMSSW_8_0_26_patch1/bin/slc7_amd64_gcc530/combineCards.py", line 50, in <module>
+    file = open(fname, "r")
+IOError: [Errno 2] No such file or directory: 'dilepton/cards/tDM/full_run2_pseudo_tDM.txt'
+done tDM_MChi1_MPhi50_pseudo1b2b_ALL.txt
+[00;32mAll clear[00m
