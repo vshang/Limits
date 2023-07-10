@@ -12,7 +12,7 @@ process                             ttZ    TTbarDL TTbarSL DYJetsToLL  ttV     S
 process                             9      1       2       3           4       5           6       7
 rate                                -1     -1      -1      -1          -1      -1          -1      -1
 --------------------------------
-lumi16_13TeV	            lnN     1.012  1.012   1.012   1.012       1.012   1.012       1.012   1.012
+lumi18_13TeV	            lnN     1.025  1.025   1.025   1.025       1.025   1.025       1.025   1.025
 QCDScale_ren_ttZ            shape   1      0       0       0           0       0           0       0
 QCDScale_fac_ttZ            shape   1      0       0       0           0       0           0       0
 QCDScale_ren_TT             shape   0      1       1       0           0       0           0       0
@@ -64,8 +64,8 @@ CMS_scaleRelativeStatFSR_j  shape   1      1       1       1           1       1
 CMS_scaleSinglePionECAL_j   shape   1      1       1       1           1       1           1       1
 CMS_scaleSinglePionHCAL_j   shape   1      1       1       1           1       1           1       1
 CMS_scaleTimePtEta_j        shape   1      1       1       1           1       1           1       1
-
-
+                                                                                                           
+                                                                                                           
 * autoMCStats 100
 
 ttz_norm rateParam * ttZ 1 [0.5,2]

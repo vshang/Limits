@@ -65,8 +65,8 @@ CMS_scaleSinglePionECAL_j   shape   1      1       1       1           1       1
 CMS_scaleSinglePionHCAL_j   shape   1      1       1       1           1       1           1       1
 CMS_scaleTimePtEta_j        shape   1      1       1       1           1       1           1       1
 preFire                     shape   1      1       1       1           1       1           1       1
-
-
+                                                                                                           
+                                                                                                           
 * autoMCStats 100
 
 ttz_norm rateParam * ttZ 1 [0.5,2]

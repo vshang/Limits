@@ -34,7 +34,7 @@ parser.add_option("-m", "--mediator", action="store", type="string", dest="media
 parser.add_option("-j", "--bjets", action="store", type="string", dest="bjets", default="1b")
 parser.add_option("-a", "--all", action="store_true", default=False, dest="all")
 parser.add_option("-b", "--bash", action="store_true", default=False, dest="bash")
-parser.add_option("-B", "--blind", action="store_true", default=True, dest="blind")
+parser.add_option("-B", "--blind", action="store_true", default=False, dest="blind")
 parser.add_option("-N", "--name", action="store", type="string", default="", dest="name")
 parser.add_option("-Y", "--year", action="store", type="string", default="2016", dest="year")
 (options, args) = parser.parse_args()
@@ -312,7 +312,7 @@ def limit(channel, signal):
     #     leg.SetHeader("Scalar, Dirac #chi, g_{#chi} = g_{q} = 1, m_{#chi} = 1 GeV")
     # else:
     #     leg.SetHeader("Pseudoscalar, Dirac #chi, g_{#chi} = g_{q} = 1, m_{#chi} = 1 GeV")
-    #leg.AddEntry(Obs0s,  "Observed 95% CL", "l")
+    if not options.blind: leg.AddEntry(Obs0s,  "Observed 95% CL", "l")
     #leg.AddEntry(Exp0s,  "Expected 95% CL (t+DM, tt+DM)", "l")
     #leg.AddEntry(Exp0s,  "Median expected 95% CL (t+DM, tt+DM)", "l")
     leg.AddEntry(Exp0s,  "Median expected 95% CL (tt+DM)", "l")

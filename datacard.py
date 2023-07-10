@@ -28,7 +28,7 @@ year = options.year
 jobs = []
 
 #latest one used
-greenShape = ['CMS_res_j_'+year, 'CMS_WewkWeight', 'CMS_ZewkWeight', 'CMS_pdf', 'CMS_eff_b_corr', 'CMS_eff_b_light_corr', 'CMS_eff_b_'+year, 'CMS_eff_b_light_'+year, 'CMS_scale_pu', 'CMS_eff_met_trigger', 'QCDScale_ren_TT', 'QCDScale_fac_TT', 'QCDScale_ren_VV', 'QCDScale_fac_VV', 'preFire', 'CMS_eff_e', 'CMS_eff_m', 'CMS_trig_e', 'CMS_trig_m']
+greenShape = ['CMS_res_j_'+year, 'CMS_WewkWeight', 'CMS_ZewkWeight', 'CMS_pdf', 'CMS_eff_b_corr', 'CMS_eff_b_light_corr', 'CMS_eff_b_'+year, 'CMS_eff_b_light_'+year, 'CMS_scale_pu', 'CMS_eff_met_trigger', 'QCDScale_ren_TT', 'QCDScale_fac_TT', 'QCDScale_ren_VV', 'QCDScale_fac_VV', 'preFire', 'CMS_eff_e', 'CMS_eff_m', 'CMS_trig_e', 'CMS_trig_m', 'CMS_WqcdWeightRen', 'CMS_WqcdWeightFac', 'CMS_ZqcdWeightRen', 'CMS_ZqcdWeightFac']
 
 #greenShape = ['CMS_res_j_'+year, 'CMS_WqcdWeightRen', 'CMS_WqcdWeightFac', 'CMS_WewkWeight', 'CMS_ZqcdWeightRen', 'CMS_ZqcdWeightFac', 'CMS_ZewkWeight', 'CMS_pdf', 'CMS_eff_b_corr', 'CMS_eff_b_light_corr', 'CMS_eff_b_'+year, 'CMS_eff_b_light_'+year, 'CMS_scale_pu', 'CMS_eff_met_trigger', 'QCDScale_ren_TT', 'QCDScale_fac_TT', 'QCDScale_ren_VV', 'QCDScale_fac_VV', 'preFire', 'CMS_eff_e', 'CMS_eff_m', 'CMS_trig_e', 'CMS_trig_m']
 
@@ -104,8 +104,10 @@ norm = {
     "QCDScale_ttDM" : {"ttDM_" : 1.3},
     "QCDScale_tttDM" : {"tttDM_" : 1.3},
     "ttH_HToInv_xsec" : {"ttDM_" : [1.068, 0.901]},
-    "CMS_PSisr"   : {"VV" : 1.05, "ST" : 1.05, "DM" : 1.05},
-    "CMS_PSfsr"   : {"VV" : 1.05, "ST" : 1.05, "DM" : 1.05},
+    "CMS_PSisr"   : {"VV" : 1.05, "ST" : 1.05, "DM" : 1.05, "TTV" : 1.05, "TTTo2L2Nu" : 1.05, "TTToSemiLepton" : 1.05, "TTToHadronic" : 1.05, "Other" : 1.05},
+    "CMS_PSfsr"   : {"VV" : 1.05, "ST" : 1.05, "DM" : 1.05, "TTV" : 1.05, "TTTo2L2Nu" : 1.05, "TTToSemiLepton" : 1.05, "TTToHadronic" : 1.05, "Other" : 1.05},
+    "nbjetSF_WPlusJets" : {"WJetsToLNu" : 1.05}, 
+    "nbjetSF_ZTo2L" : {"DYJetsToLL" : 1.05},
     #"CMS_pdf"   : {"VV" : 1.05, "ST" : 1.05},
     #"lumi16_13TeV" : {"VV" : 1.012, "ST" : 1.012, "DM" : 1.012},
     #"lumi17_13TeV" : {"VV" : 1.023, "ST" : 1.023, "DM" : 1.023},
@@ -114,17 +116,17 @@ norm = {
 
 #Add lumi norm uncertainties based on year
 if year == "2016":
-    norm["lumi16_13TeV"] = {"VV" : 1.012, "ST" : 1.012, "DM" : 1.012}
+    norm["lumi16_13TeV"] = {"VV" : 1.012, "ST" : 1.012, "DM" : 1.012, "TTV" : 1.012, "TTTo2L2Nu" : 1.012, "TTToSemiLepton" : 1.012, "TTToHadronic" : 1.012, "Other" : 1.012}
     greenShape.append('CMS_UncMET_2016')
-    greenShape.append('CMS_WqcdWeightRen')
-    greenShape.append('CMS_WqcdWeightFac')
-    greenShape.append('CMS_ZqcdWeightRen')
-    greenShape.append('CMS_ZqcdWeightFac')
+    # greenShape.append('CMS_WqcdWeightRen')
+    # greenShape.append('CMS_WqcdWeightFac')
+    # greenShape.append('CMS_ZqcdWeightRen')
+    # greenShape.append('CMS_ZqcdWeightFac')
 elif year == "2017":
-    norm["lumi17_13TeV"] = {"VV" : 1.023, "ST" : 1.023, "DM" : 1.023}
+    norm["lumi17_13TeV"] = {"VV" : 1.023, "ST" : 1.023, "DM" : 1.023, "TTV" : 1.023, "TTTo2L2Nu" : 1.023, "TTToSemiLepton" : 1.023, "TTToHadronic" : 1.023, "Other" : 1.023}
     greenShape.append('CMS_UncMET_2017')
 elif year == "2018":
-    norm["lumi18_13TeV"] = {"VV" : 1.025,  "ST" : 1.025, "DM" : 1.025}
+    norm["lumi18_13TeV"] = {"VV" : 1.025,  "ST" : 1.025, "DM" : 1.025, "TTV" : 1.023, "TTTo2L2Nu" : 1.023, "TTToSemiLepton" : 1.023, "TTToHadronic" : 1.023, "Other" : 1.023}
     greenShape.append('CMS_UncMET_2018')
 
 freenorm = {
@@ -153,11 +155,18 @@ rateparam = {
     # 'rateTopSL' : 'TTbarSL',
     'rateTopSL'+year : 'TTTo2L2Nu', 
     'rateTopAH'+year : 'TTToSemiLepton',
-    #'rateTop2lepAH' : 'TTTo2L2Nu',
+    #'rateTop2LAH'+year : 'TTTo2L2Nu',
+    #'rateTop1LSL'+year : 'TTToSemiLepton',
+    #'rateSTAH'+year : 'ST',
+    #'rateSTSL'+year : 'ST',
     # 'ratetopsl' : 'TTTo2L2Nu',
 
     'rateZjetsAH'+year : 'DYJetsToNuNu',
     'rateZjetsAH_ZR'+year : 'DYJetsToLL', #will effectively be called rateZjetsAH
+    #'rateZjetsAH1b'+year : 'DYJetsToNuNu',
+    #'rateZjetsAH1b_ZR'+year : 'DYJetsToLL', #will effectively be called rateZjetsAH1b
+    #'rateZjetsAH2b'+year : 'DYJetsToNuNu',
+    #'rateZjetsAH2b_ZR'+year : 'DYJetsToLL', #will effectively be called rateZjetsAH2b
 
     'rateWjetsAH'+year : 'WJetsToLNu',
     'rateWjetsSL'+year : 'WJetsToLNu',
@@ -290,6 +299,12 @@ def datacard(cat, sign):
                             continue
                         else:
                             continue
+                    if ('AH' in cat and 'TTToSemiLepton' in n) or ('SL' in cat and 'TTTo2L2Nu' in n):
+                        continue
+                    # if ('TTToSemiLepton' in n) or ('TTTo2L2Nu' in n) or ('ST' in n):
+                    #     continue
+                    if (k=='nbjetSF_WPlusJets' and 'AH1lWR' not in cat): continue
+                    if (k=='nbjetSF_ZTo2L' and 'AH2lZR' not in cat): continue
                     card += ("%-25.3f" % norm[k][n])
                     issyst = True
             if not issyst: card += "%-25s" % "-"
@@ -310,6 +325,11 @@ def datacard(cat, sign):
     if verbose: print "  Rate params..."
     for p, m in rateparam.iteritems():
         if (('AH' in cat and 'AH' in p) or ('SL' in cat and 'SL' in p)):
+            # if ("Zjets" in p): #Separate 1b and 2b rateParams for ZTo2Nu CRs (AH2l1bZR, AH2l2bZR)
+            #     if ('SR' not in cat) and ('ZR' not in cat): #Skip adding ZTo2Nu rateParams to AH CRs without separate 1b/2b categories
+            #         continue 
+            #     if ('1b' in p and '2b' in cat) or ('2b' in p and '1b' in cat) or ('2b' in p and '0f' in cat) or ('2b' in p and '1f' in cat):
+            #         continue
             if ("ZR" in cat and "ZR" in p):
                 p= p.replace("_ZR","")
             elif ("ZR" in cat and "NuNu" in m): continue
@@ -321,7 +341,7 @@ def datacard(cat, sign):
             #paper
             #print '--> p',p,'cat',cat,'m',m
             #card += "%-25s%-20s%-20s\t%-20s          1.   [0.1,2]\n" % (p, 'rateParam', cat, m, )
-            card += "%-25s%-20s%-20s\t%-20s          1.   \n" % (p, 'rateParam', cat, m, )
+            card += "%-30s%-20s%-20s\t%-20s          1.   [0.01,3]\n" % (p, 'rateParam', cat, m, )
             #print '--> rate ',"%-25s%-20s%-20s\t%-20s          1.   [0.1,2]\n" % (p, 'rateParam', cat, m, )
             #card += "%25s%20s          1.   0.9\n" % (p, 'aparam')
             #print '--> param',"%25s%20s          1.   0.9\n" % (p, 'param')
@@ -333,7 +353,7 @@ def datacard(cat, sign):
     if verbose: print "  MC statistics..."
     # MC statistics
     ##paper
-    card += "* autoMCStats 0.1\n"
+    card += "* autoMCStats 100\n"
     
     if verbose: print "  Done. Writing to file..."
     # Close rootfile
@@ -437,9 +457,9 @@ def fillLists():
         obj = key.ReadObj()
         if obj.IsA().InheritsFrom("TH1"):
             name = obj.GetName()
-            if 'DM' in name:
+            #if 'DM' in name:
             #if ('ttDM_' in name) and  ('tttDM' not in name) and ('scalar' in name):
-            #if ('tttDM_MChi1_MPhi100_scalar' in name):
+            if ('tttDM_MChi1_MPhi400_scalar' in name):
             #if ('DM_MChi1_MPhi125_scalar' in name) or ('DM_MChi1_MPhi100_scalar' in name):
             #if ('DM_MChi1_MPhi125_scalar') in name or ('DM_MChi1_MPhi100_scalar' in name) or ('DM_MChi1_MPhi150_scalar' in name):
                 sign.append( name )                

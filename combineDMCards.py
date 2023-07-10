@@ -67,7 +67,7 @@ def combineCards():
         
         for card in cardsForSignal:
             if bjet=='1b' and '2b' in card: continue
-            if bjet=='2b' and ('SR' in card and '2b' not in card): continue
+            if bjet=='2b' and (('SR' in card and '2b' not in card) or ('AH2l1b' in card)): continue
             if 'bin' in card:
                 region = card[:card.find('bin')+3]
                 region = region[region.rfind('_')+1:]
