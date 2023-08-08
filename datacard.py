@@ -28,9 +28,7 @@ year = options.year
 jobs = []
 
 #latest one used
-greenShape = ['CMS_res_j_'+year, 'CMS_WewkWeight', 'CMS_ZewkWeight', 'CMS_pdf', 'CMS_eff_b_corr', 'CMS_eff_b_light_corr', 'CMS_eff_b_'+year, 'CMS_eff_b_light_'+year, 'CMS_scale_pu', 'CMS_eff_met_trigger', 'QCDScale_ren_TT', 'QCDScale_fac_TT', 'QCDScale_ren_VV', 'QCDScale_fac_VV', 'preFire', 'CMS_eff_e', 'CMS_eff_m', 'CMS_trig_e', 'CMS_trig_m', 'CMS_WqcdWeightRen', 'CMS_WqcdWeightFac', 'CMS_ZqcdWeightRen', 'CMS_ZqcdWeightFac']
-
-#greenShape = ['CMS_res_j_'+year, 'CMS_WqcdWeightRen', 'CMS_WqcdWeightFac', 'CMS_WewkWeight', 'CMS_ZqcdWeightRen', 'CMS_ZqcdWeightFac', 'CMS_ZewkWeight', 'CMS_pdf', 'CMS_eff_b_corr', 'CMS_eff_b_light_corr', 'CMS_eff_b_'+year, 'CMS_eff_b_light_'+year, 'CMS_scale_pu', 'CMS_eff_met_trigger', 'QCDScale_ren_TT', 'QCDScale_fac_TT', 'QCDScale_ren_VV', 'QCDScale_fac_VV', 'preFire', 'CMS_eff_e', 'CMS_eff_m', 'CMS_trig_e', 'CMS_trig_m']
+greenShape = ['CMS_res_j_'+year, 'CMS_WewkWeight', 'CMS_ZewkWeight', 'CMS_pdf', 'CMS_eff_b_corr', 'CMS_eff_b_light_corr', 'CMS_eff_b_'+year, 'CMS_eff_b_light_'+year, 'CMS_scale_pu', 'CMS_eff_met_trigger', 'QCDScale_ren_TT', 'QCDScale_fac_TT', 'QCDScale_ren_VV', 'QCDScale_fac_VV', 'preFire', 'CMS_eff_e', 'CMS_eff_m', 'CMS_trig_e', 'CMS_trig_m', 'CMS_WqcdWeightRen', 'CMS_WqcdWeightFac', 'CMS_ZqcdWeightRen', 'CMS_ZqcdWeightFac', 'nbjet_SF_W', 'nbjet_SF_Z']
 
 #greenShape = ['CMS_res_j_'+year, 'CMS_WqcdWeightRen', 'CMS_WqcdWeightFac', 'CMS_WewkWeight', 'CMS_ZqcdWeightRen', 'CMS_ZqcdWeightFac', 'CMS_ZewkWeight', 'CMS_pdf', 'CMS_eff_b_corr', 'CMS_eff_b_light_corr', 'CMS_eff_b_'+year, 'CMS_eff_b_light_'+year, 'CMS_scale_pu', 'CMS_eff_met_trigger', 'QCDScale_ren_TT', 'QCDScale_fac_TT', 'QCDScale_ren_VV', 'QCDScale_fac_VV', 'preFire', 'CMS_eff_lep', 'CMS_eff_lep_trigger']
 
@@ -104,10 +102,10 @@ norm = {
     "QCDScale_ttDM" : {"ttDM_" : 1.3},
     "QCDScale_tttDM" : {"tttDM_" : 1.3},
     "ttH_HToInv_xsec" : {"ttDM_" : [1.068, 0.901]},
-    "CMS_PSisr"   : {"VV" : 1.05, "ST" : 1.05, "DM" : 1.05, "TTV" : 1.05, "TTTo2L2Nu" : 1.05, "TTToSemiLepton" : 1.05, "TTToHadronic" : 1.05, "Other" : 1.05},
-    "CMS_PSfsr"   : {"VV" : 1.05, "ST" : 1.05, "DM" : 1.05, "TTV" : 1.05, "TTTo2L2Nu" : 1.05, "TTToSemiLepton" : 1.05, "TTToHadronic" : 1.05, "Other" : 1.05},
-    "nbjetSF_WPlusJets" : {"WJetsToLNu" : 1.05}, 
-    "nbjetSF_ZTo2L" : {"DYJetsToLL" : 1.05},
+    "CMS_PSisr"   : {"VV" : 1.05, "ST" : 1.05, "DM" : 1.05, "TTV" : 1.05, "TTTo2L2Nu" : 1.05, "TTToSemiLepton" : 1.05, "Other" : 1.05},
+    "CMS_PSfsr"   : {"VV" : 1.05, "ST" : 1.05, "DM" : 1.05, "TTV" : 1.05, "TTTo2L2Nu" : 1.05, "TTToSemiLepton" : 1.05, "Other" : 1.05},
+    #"nbjetSF_WPlusJets" : {"WJetsToLNu" : 1.05}, 
+    #"nbjetSF_ZTo2L" : {"DYJetsToLL" : 1.05},
     #"CMS_pdf"   : {"VV" : 1.05, "ST" : 1.05},
     #"lumi16_13TeV" : {"VV" : 1.012, "ST" : 1.012, "DM" : 1.012},
     #"lumi17_13TeV" : {"VV" : 1.023, "ST" : 1.023, "DM" : 1.023},
@@ -116,17 +114,17 @@ norm = {
 
 #Add lumi norm uncertainties based on year
 if year == "2016":
-    norm["lumi16_13TeV"] = {"VV" : 1.012, "ST" : 1.012, "DM" : 1.012, "TTV" : 1.012, "TTTo2L2Nu" : 1.012, "TTToSemiLepton" : 1.012, "TTToHadronic" : 1.012, "Other" : 1.012}
+    norm["lumi16_13TeV"] = {"VV" : 1.012, "ST" : 1.012, "DM" : 1.012, "TTV" : 1.012, "TTTo2L2Nu" : 1.012, "TTToSemiLepton" : 1.012, "Other" : 1.012}
     greenShape.append('CMS_UncMET_2016')
     # greenShape.append('CMS_WqcdWeightRen')
     # greenShape.append('CMS_WqcdWeightFac')
     # greenShape.append('CMS_ZqcdWeightRen')
     # greenShape.append('CMS_ZqcdWeightFac')
 elif year == "2017":
-    norm["lumi17_13TeV"] = {"VV" : 1.023, "ST" : 1.023, "DM" : 1.023, "TTV" : 1.023, "TTTo2L2Nu" : 1.023, "TTToSemiLepton" : 1.023, "TTToHadronic" : 1.023, "Other" : 1.023}
+    norm["lumi17_13TeV"] = {"VV" : 1.023, "ST" : 1.023, "DM" : 1.023, "TTV" : 1.023, "TTTo2L2Nu" : 1.023, "TTToSemiLepton" : 1.023, "Other" : 1.023}
     greenShape.append('CMS_UncMET_2017')
 elif year == "2018":
-    norm["lumi18_13TeV"] = {"VV" : 1.025,  "ST" : 1.025, "DM" : 1.025, "TTV" : 1.023, "TTTo2L2Nu" : 1.023, "TTToSemiLepton" : 1.023, "TTToHadronic" : 1.023, "Other" : 1.023}
+    norm["lumi18_13TeV"] = {"VV" : 1.025,  "ST" : 1.025, "DM" : 1.025, "TTV" : 1.023, "TTTo2L2Nu" : 1.023, "TTToSemiLepton" : 1.023, "Other" : 1.023}
     greenShape.append('CMS_UncMET_2018')
 
 freenorm = {
@@ -247,7 +245,13 @@ def datacard(cat, sign):
     # Shape
     if isShape:
         for i, h in enumerate(shape):
-            card += "%-50s shape     " % h
+            #Victor's edit
+            if (h == 'CMS_eff_b_corr') and ('AH' in cat):
+                card += "%-50s shape     " % "CMS_eff_b_corr_AH"
+            elif (h == 'CMS_eff_b_corr') and ('SL' in cat):
+                card += "%-50s shape     " % "CMS_eff_b_corr_SL"
+            else:
+                card += "%-50s shape     " % h
             for i, s in enumerate([sign] + back):
 #                    if i>0: card += ("%-20.1f" % 1)
 #                    else: card += "%-25s" % "-"
@@ -303,7 +307,7 @@ def datacard(cat, sign):
                         continue
                     # if ('TTToSemiLepton' in n) or ('TTTo2L2Nu' in n) or ('ST' in n):
                     #     continue
-                    if (k=='nbjetSF_WPlusJets' and 'AH1lWR' not in cat): continue
+                    if (k=='nbjetSF_WPlusJets' and (('AH1lWR' not in cat) or ('SL1lWR' not in cat))): continue
                     if (k=='nbjetSF_ZTo2L' and 'AH2lZR' not in cat): continue
                     card += ("%-25.3f" % norm[k][n])
                     issyst = True
@@ -457,11 +461,11 @@ def fillLists():
         obj = key.ReadObj()
         if obj.IsA().InheritsFrom("TH1"):
             name = obj.GetName()
-            #if 'DM' in name:
+            if 'DM' in name:
             #if ('ttDM_' in name) and  ('tttDM' not in name) and ('scalar' in name):
-            if ('tttDM_MChi1_MPhi400_scalar' in name):
+            #if ('tttDM_MChi1_MPhi100_scalar' in name):
             #if ('DM_MChi1_MPhi125_scalar' in name) or ('DM_MChi1_MPhi100_scalar' in name):
-            #if ('DM_MChi1_MPhi125_scalar') in name or ('DM_MChi1_MPhi100_scalar' in name) or ('DM_MChi1_MPhi150_scalar' in name):
+            #if ('tttDM_MChi1_MPhi50_scalar') in name or ('tttDM_MChi1_MPhi100_scalar' in name) or ('tttDM_MChi1_MPhi500_scalar' in name):
                 sign.append( name )                
             ##paper
             #elif not "data_obs" in name and not "BkgSum" in name: back.append(name)
