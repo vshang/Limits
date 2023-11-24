@@ -40,10 +40,10 @@ text2workspace.py -m $mass --channel-masks $dir/$name.txt -o $dir/$name.root
 # pdftoppm -png -f 1 $dir/impacts_r1_$name.pdf $dir/impacts_r1_$name
 
 #Unblinding
-combineTool.py -M Impacts --rMin -5 --rMax 5 -d $dir/$name.root -m $mass --doInitialFit --robustFit 1 --parallel 40 --cminDefaultMinimizerStrategy=0
-combineTool.py -M Impacts --rMin -5 --rMax 5 -d $dir/$name.root -m $mass --robustFit 1 --doFits --parallel 40 --cminDefaultMinimizerStrategy=0
-combineTool.py -M Impacts -d $dir/$name.root -m $mass -o $dir/impacts_unblinded_$name.json
-plotImpacts.py -i $dir/impacts_unblinded_$name.json --cms-label Preliminary -o $dir/impacts_unblinded_$name
+# combineTool.py -M Impacts --rMin -5 --rMax 5 -d $dir/$name.root -m $mass --doInitialFit --robustFit 1 --parallel 40 --cminDefaultMinimizerStrategy=0
+# combineTool.py -M Impacts --rMin -5 --rMax 5 -d $dir/$name.root -m $mass --robustFit 1 --doFits --parallel 40 --cminDefaultMinimizerStrategy=0
+# combineTool.py -M Impacts -d $dir/$name.root -m $mass -o $dir/impacts_unblinded_$name.json
+# plotImpacts.py -i $dir/impacts_unblinded_$name.json --cms-label Preliminary -o $dir/impacts_unblinded_$name
 # pdftoppm -png -f 1 $dir/impacts_unblinded_$name.pdf $dir/impacts_unblinded_$name
 
 

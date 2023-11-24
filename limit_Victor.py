@@ -329,9 +329,13 @@ def limit(channel, signal):
     c1.GetPad(0).RedrawAxis()
     c1.GetPad(0).Update()
     if gROOT.IsBatch():
-        c1.Print("plotsLimit_"+options.name+"/Exclusion_"+channel+"_"+options.mediator+"_"+options.bjets+".root")
-        c1.Print("plotsLimit_"+options.name+"/Exclusion_"+channel+"_"+options.mediator+"_"+options.bjets+".png")
-        c1.Print("plotsLimit_"+options.name+"/Exclusion_"+channel+"_"+options.mediator+"_"+options.bjets+".pdf")
+        if options.blind:
+            suffix = "_blind"
+        else:
+            suffix = ""
+        c1.Print("plotsLimit_"+options.name+"/Exclusion_"+channel+"_"+options.mediator+"_"+options.bjets+suffix+".root")
+        c1.Print("plotsLimit_"+options.name+"/Exclusion_"+channel+"_"+options.mediator+"_"+options.bjets+suffix+".png")
+        c1.Print("plotsLimit_"+options.name+"/Exclusion_"+channel+"_"+options.mediator+"_"+options.bjets+suffix+".pdf")
 
     if not gROOT.IsBatch(): raw_input("Press Enter to continue...")
     

@@ -5,6 +5,8 @@ import copy
 import math
 from array import array
 from ROOT import gROOT, TFile, TH1F
+import json
+
 
 import optparse
 usage = "usage: %prog [options]"
@@ -24,11 +26,18 @@ isShape = not options.isCutAndCount
 isOverride = options.override
 verbose = options.verbose
 year = options.year
+useFilter = True
 
 jobs = []
 
+#Import json file for filtering backgrounds in datacards
+bkgFilter = json.load(open('bkg_filter.json'))    
+addFilter = json.load(open('add_filter' + year + '.json'))
+
 #latest one used
 greenShape = ['CMS_res_j_'+year, 'CMS_WewkWeight', 'CMS_ZewkWeight', 'CMS_pdf', 'CMS_eff_b_corr', 'CMS_eff_b_light_corr', 'CMS_eff_b_'+year, 'CMS_eff_b_light_'+year, 'CMS_scale_pu', 'CMS_eff_met_trigger', 'QCDScale_ren_TT', 'QCDScale_fac_TT', 'QCDScale_ren_VV', 'QCDScale_fac_VV', 'preFire', 'CMS_eff_e', 'CMS_eff_m', 'CMS_trig_e', 'CMS_trig_m', 'CMS_WqcdWeightRen', 'CMS_WqcdWeightFac', 'CMS_ZqcdWeightRen', 'CMS_ZqcdWeightFac', 'nbjet_SF_W', 'nbjet_SF_Z']
+
+#greenShape = ['CMS_res_j_'+year, 'CMS_WewkWeight', 'CMS_ZewkWeight', 'CMS_pdf', 'CMS_eff_b_corr_AH', 'CMS_eff_b_corr_SL', 'CMS_eff_b_light_corr', 'CMS_eff_b_'+year, 'CMS_eff_b_light_'+year, 'CMS_scale_pu', 'CMS_eff_met_trigger', 'QCDScale_ren_TT', 'QCDScale_fac_TT', 'QCDScale_ren_VV', 'QCDScale_fac_VV', 'preFire', 'CMS_eff_e', 'CMS_eff_m', 'CMS_trig_e', 'CMS_trig_m', 'CMS_WqcdWeightRen', 'CMS_WqcdWeightFac', 'CMS_ZqcdWeightRen', 'CMS_ZqcdWeightFac', 'nbjet_SF_W', 'nbjet_SF_Z']
 
 #greenShape = ['CMS_res_j_'+year, 'CMS_WqcdWeightRen', 'CMS_WqcdWeightFac', 'CMS_WewkWeight', 'CMS_ZqcdWeightRen', 'CMS_ZqcdWeightFac', 'CMS_ZewkWeight', 'CMS_pdf', 'CMS_eff_b_corr', 'CMS_eff_b_light_corr', 'CMS_eff_b_'+year, 'CMS_eff_b_light_'+year, 'CMS_scale_pu', 'CMS_eff_met_trigger', 'QCDScale_ren_TT', 'QCDScale_fac_TT', 'QCDScale_ren_VV', 'QCDScale_fac_VV', 'preFire', 'CMS_eff_lep', 'CMS_eff_lep_trigger']
 
@@ -177,6 +186,23 @@ rateparam = {
 def datacard(cat, sign):
     
     if verbose: print "  Starting datacard for category", cat, "and mass", sign, "..."
+
+    #Apply background filter if useFilter==True
+    if useFilter:
+        backTemp = []
+        catPrefix = cat[0:cat.find('bin')+3]
+        if 'AH' in cat:
+            bkgFilterList = bkgFilter['AH'][catPrefix]
+        elif 'SL' in cat:
+            bkgFilterList = bkgFilter['SL'][catPrefix]
+        else:
+            bkgFilterList = []
+        for bkg in back:
+            if (bkg in bkgFilterList) and (bkg not in addFilter.get(cat, [])):
+                backTemp.append(bkg)
+    else:
+        backTemp = back
+        
     
 #    hist = {}
 #    syst = {}
@@ -218,19 +244,19 @@ def datacard(cat, sign):
     card += "shapes * * " + space + "rootfiles_"+options.name+"/$CHANNEL.root          $PROCESS          $SYSTEMATIC/$PROCESS\n"
     card += hline
     card += "bin        " + space
-    for i, s in enumerate([sign] + back):
+    for i, s in enumerate([sign] + backTemp):
         card += "%-30s" % cat
     card += "\n"
     card += "process    " + space
-    for i, s in enumerate([sign] + back):
+    for i, s in enumerate([sign] + backTemp):
         card += "%-30s" % s
     card += "\n"
     card += "process    " + space
-    for i, s in enumerate([sign] + back):
+    for i, s in enumerate([sign] + backTemp):
         card += "%-30d" % i
     card += "\n"
     card += "rate       " + space
-    for i, s in enumerate([sign] + back):
+    for i, s in enumerate([sign] + backTemp):
         card += "%-25.6f" % getNumber(cat, s) #-1.
     card += "\n"
     card += hline
@@ -246,13 +272,13 @@ def datacard(cat, sign):
     if isShape:
         for i, h in enumerate(shape):
             #Victor's edit
-            if (h == 'CMS_eff_b_corr') and ('AH' in cat):
-                card += "%-50s shape     " % "CMS_eff_b_corr_AH"
-            elif (h == 'CMS_eff_b_corr') and ('SL' in cat):
-                card += "%-50s shape     " % "CMS_eff_b_corr_SL"
-            else:
-                card += "%-50s shape     " % h
-            for i, s in enumerate([sign] + back):
+            if (h == 'CMS_eff_b_corr_AH') and ('SL' in cat):
+                continue
+            elif (h == 'CMS_eff_b_corr_SL') and ('AH' in cat):
+                continue
+            #End of Victor's edit
+            card += "%-50s shape     " % h
+            for i, s in enumerate([sign] + backTemp):
 #                    if i>0: card += ("%-20.1f" % 1)
 #                    else: card += "%-25s" % "-"
                 if not checkShape(cat, s, h): card += ("%-25.0f" % 1)
@@ -265,7 +291,7 @@ def datacard(cat, sign):
             card += "%-50s lnN       " % h
             for c in categories:
                 for b in range(nbin[c] if not isShape else 1):
-                    for i, s in enumerate([sign] + back): #
+                    for i, s in enumerate([sign] + backTemp): #
                         #print c, s, h, syst[c][s][h][1].GetBinContent(b+1)
                         if syst[c][s][h][0].GetBinContent(b+1) != 0:
                             up = max(min(syst[c][s][h][1].GetBinContent(b+1)/syst[c][s][h][0].GetBinContent(b+1), 2), 0.5)
@@ -281,7 +307,7 @@ def datacard(cat, sign):
     # Normalization
     for k in sorted(norm.keys()):
         card += "%-50s lnN       " % k
-        for i, s in enumerate([sign] + back):
+        for i, s in enumerate([sign] + backTemp):
             issyst = False
             for n, nn in norm[k].iteritems():
                 if n in s and norm[k][n]>0 and (not checkNorm(cat, s)):
@@ -318,9 +344,9 @@ def datacard(cat, sign):
     
     # Free backgrounds
     for k in sorted(freenorm.keys()):
-        if any([True for x in back if x in k]):
+        if any([True for x in backTemp if x in k]):
             card += "%-50s lnU       " % k
-            for i, s in enumerate([sign] + back):
+            for i, s in enumerate([sign] + backTemp):
                 if s in k: card += ("%-25.3f" % freenorm[k])
                 else: card += "%-25s" % "-"
             card += "\n"
@@ -341,6 +367,7 @@ def datacard(cat, sign):
 
             if "bin" in cat:
                 p = p + cat[cat.find("bin")+3:]
+            if m not in backTemp: continue
 
             #paper
             #print '--> p',p,'cat',cat,'m',m
@@ -461,7 +488,8 @@ def fillLists():
         obj = key.ReadObj()
         if obj.IsA().InheritsFrom("TH1"):
             name = obj.GetName()
-            if 'DM' in name:
+            #if 'DM' in name:
+            if 'tttDM_' in name:
             #if ('ttDM_' in name) and  ('tttDM' not in name) and ('scalar' in name):
             #if ('tttDM_MChi1_MPhi100_scalar' in name):
             #if ('DM_MChi1_MPhi125_scalar' in name) or ('DM_MChi1_MPhi100_scalar' in name):
