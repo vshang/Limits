@@ -1,6 +1,6 @@
 dir=$1
 name=$(basename $2 .txt)
-read num1 mass num3 <<<${name//[^0-9]/ }
+read num1 mass num2 <<<${name//[^0-9]/ }
 echo "$num1 / $num2"
 
 #mass=125
@@ -26,8 +26,8 @@ text2workspace.py -m $mass --channel-masks $dir/$name.txt -o $dir/$name.root
 # pdftoppm -png -f 1 $dir/impacts_$name.pdf $dir/impacts_$name
 
 #r=0
-# combineTool.py -M Impacts --expectSignal=0  --rMin -3 --rMax 3 -d $dir/$name.root -m $mass -t -1 --doInitialFit --robustFit 1 --parallel 40 
-# combineTool.py -M Impacts --expectSignal=0  --rMin -10 --rMax 10 -d $dir/$name.root -m $mass -t -1 --robustFit 1 --doFits --parallel 40 --job-mode condor --dry-run
+# combineTool.py -M Impacts --expectSignal=0  --rMin -5 --rMax 5 -d $dir/$name.root -m $mass -t -1 --doInitialFit --robustFit 1 --parallel 40 
+# combineTool.py -M Impacts --expectSignal=0  --rMin -5 --rMax 5 -d $dir/$name.root -m $mass -t -1 --robustFit 1 --doFits --parallel 40 --job-mode condor --dry-run
 # combineTool.py -M Impacts --expectSignal=0  -d $dir/$name.root -m $mass -t -1 -o $dir/impacts_r0_$name.json
 # plotImpacts.py -i $dir/impacts_r0_$name.json --cms-label Preliminary -o $dir/impacts_r0_$name
 # pdftoppm -png -f 1 $dir/impacts_r0_$name.pdf $dir/impacts_r0_$name
@@ -40,12 +40,15 @@ text2workspace.py -m $mass --channel-masks $dir/$name.txt -o $dir/$name.root
 # pdftoppm -png -f 1 $dir/impacts_r1_$name.pdf $dir/impacts_r1_$name
 
 #Unblinding
-# combineTool.py -M Impacts --rMin -5 --rMax 5 -d $dir/$name.root -m $mass --doInitialFit --robustFit 1 --parallel 40 --cminDefaultMinimizerStrategy=0
-# combineTool.py -M Impacts --rMin -5 --rMax 5 -d $dir/$name.root -m $mass --robustFit 1 --doFits --parallel 40 --cminDefaultMinimizerStrategy=0
+#combineTool.py -M Impacts --rMin -5 --rMax 5 -d $dir/$name.root -m $mass --doInitialFit --robustFit 1 --parallel 40 --cminDefaultMinimizerStrategy=0
+#combineTool.py -M Impacts --rMin -5 --rMax 5 -d $dir/$name.root -m $mass --robustFit 1 --doFits --parallel 40 --cminDefaultMinimizerStrategy=0 --job-mode condor --dry-run
 # combineTool.py -M Impacts -d $dir/$name.root -m $mass -o $dir/impacts_unblinded_$name.json
 # plotImpacts.py -i $dir/impacts_unblinded_$name.json --cms-label Preliminary -o $dir/impacts_unblinded_$name
 # pdftoppm -png -f 1 $dir/impacts_unblinded_$name.pdf $dir/impacts_unblinded_$name
 
+#Unblinding with additional options
+#combineTool.py -M Impacts --rMin -5 --rMax 5 -d $dir/$name.root -m $mass --doInitialFit --robustFit 1 --parallel 40 --cminDefaultMinimizerStrategy=0 --cminApproxPreFitTolerance=100 --cminFallbackAlgo Minuit2,Migrad,0:0.1 --X-rtd MINIMIZER_MaxCalls=9999999 --X-rtd MINIMIZER_analytic --X-rtd FAST_VERTICAL_MORPH
+#combineTool.py -M Impacts --rMin -5 --rMax 5 -d $dir/$name.root -m $mass --robustFit 1 --doFits --parallel 40 --cminDefaultMinimizerStrategy=0 --job-mode condor --dry-run
 
 #impacts
 #r0

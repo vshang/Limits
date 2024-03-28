@@ -26,7 +26,7 @@ isShape = not options.isCutAndCount
 isOverride = options.override
 verbose = options.verbose
 year = options.year
-useFilter = True
+useFilter = False
 
 jobs = []
 
@@ -35,7 +35,11 @@ bkgFilter = json.load(open('bkg_filter.json'))
 addFilter = json.load(open('add_filter' + year + '.json'))
 
 #latest one used
-greenShape = ['CMS_res_j_'+year, 'CMS_WewkWeight', 'CMS_ZewkWeight', 'CMS_pdf', 'CMS_eff_b_corr', 'CMS_eff_b_light_corr', 'CMS_eff_b_'+year, 'CMS_eff_b_light_'+year, 'CMS_scale_pu', 'CMS_eff_met_trigger', 'QCDScale_ren_TT', 'QCDScale_fac_TT', 'QCDScale_ren_VV', 'QCDScale_fac_VV', 'preFire', 'CMS_eff_e', 'CMS_eff_m', 'CMS_trig_e', 'CMS_trig_m', 'CMS_WqcdWeightRen', 'CMS_WqcdWeightFac', 'CMS_ZqcdWeightRen', 'CMS_ZqcdWeightFac', 'nbjet_SF_W', 'nbjet_SF_Z']
+#greenShape = ['CMS_res_j_'+year, 'CMS_WewkWeight', 'CMS_ZewkWeight', 'CMS_pdf', 'CMS_eff_b_corr', 'CMS_eff_b_light_corr', 'CMS_eff_b_'+year, 'CMS_eff_b_light_'+year, 'CMS_scale_pu', 'CMS_eff_met_trigger', 'QCDScale_ren_TT', 'QCDScale_fac_TT', 'QCDScale_ren_VV', 'QCDScale_fac_VV', 'preFire', 'CMS_eff_e', 'CMS_eff_m', 'CMS_trig_e', 'CMS_trig_m', 'CMS_WqcdWeightRen', 'CMS_WqcdWeightFac', 'CMS_ZqcdWeightRen', 'CMS_ZqcdWeightFac', 'nbjet_SF_W', 'nbjet_SF_Z']
+
+#greenShape = ['CMS_res_j_'+year, 'CMS_WewkWeight', 'CMS_ZewkWeight', 'CMS_pdf', 'CMS_eff_b_jes', 'CMS_eff_b_pileup', 'CMS_eff_b_type3', 'CMS_eff_b_light_corr', 'CMS_eff_b_stat_'+year, 'CMS_eff_b_light_'+year, 'CMS_scale_pu', 'CMS_eff_met_trigger', 'QCDScale_ren_TT', 'QCDScale_fac_TT', 'QCDScale_ren_VV', 'QCDScale_fac_VV', 'preFire', 'CMS_eff_e', 'CMS_eff_m', 'CMS_trig_e', 'CMS_trig_m', 'CMS_WqcdWeightRen', 'CMS_WqcdWeightFac', 'CMS_ZqcdWeightRen', 'CMS_ZqcdWeightFac', 'nbjet_SF_W', 'nbjet_SF_Z']
+
+greenShape = ['CMS_res_j_'+year, 'CMS_WewkWeight', 'CMS_ZewkWeight', 'CMS_pdf', 'CMS_eff_b_corr', 'CMS_eff_b_light_corr', 'CMS_eff_b_'+year, 'CMS_eff_b_light_'+year, 'CMS_scale_pu', 'CMS_eff_met_trigger', 'QCDScale_ren_TT', 'QCDScale_fac_TT', 'QCDScale_ren_VV', 'QCDScale_fac_VV', 'preFire', 'CMS_eff_e', 'CMS_eff_m', 'CMS_trig_e', 'CMS_trig_m', 'CMS_WqcdWeightRen', 'CMS_WqcdWeightFac', 'CMS_ZqcdWeightRen', 'CMS_ZqcdWeightFac', 'nbjet_SF_W', 'nbjet_SF_Z', 'CMS_HF_W_1b', 'CMS_HF_Z_1b', 'CMS_HF_W_2b', 'CMS_HF_Z_2b']
 
 #greenShape = ['CMS_res_j_'+year, 'CMS_WewkWeight', 'CMS_ZewkWeight', 'CMS_pdf', 'CMS_eff_b_corr_AH', 'CMS_eff_b_corr_SL', 'CMS_eff_b_light_corr', 'CMS_eff_b_'+year, 'CMS_eff_b_light_'+year, 'CMS_scale_pu', 'CMS_eff_met_trigger', 'QCDScale_ren_TT', 'QCDScale_fac_TT', 'QCDScale_ren_VV', 'QCDScale_fac_VV', 'preFire', 'CMS_eff_e', 'CMS_eff_m', 'CMS_trig_e', 'CMS_trig_m', 'CMS_WqcdWeightRen', 'CMS_WqcdWeightFac', 'CMS_ZqcdWeightRen', 'CMS_ZqcdWeightFac', 'nbjet_SF_W', 'nbjet_SF_Z']
 
@@ -60,8 +64,14 @@ jesUnc = ['AbsoluteMPFBias', 'AbsoluteScale', 'AbsoluteStat', 'FlavorQCD', 'Frag
 #jesUnc = ['AbsoluteMPFBias', 'AbsoluteScale', 'AbsoluteStat', 'FlavorQCD', 'Fragmentation', 'PileUpDataMC', 'PileUpPtBB', 'PileUpPtEC1', 'PileUpPtEC2', 'PileUpPtHF', 'PileUpPtRef', 'RelativeFSR']
 #jesUnc = ['AbsoluteMPFBias', 'AbsoluteScale', 'AbsoluteStat', 'FlavorQCD', 'Fragmentation', 'PileUpDataMC', 'PileUpPtBB', 'PileUpPtEC1', 'PileUpPtEC2', 'PileUpPtHF', 'PileUpPtRef', 'RelativeFSR', 'RelativeJEREC1', 'RelativeJEREC2', 'RelativeJERHF', 'RelativePtBB', 'RelativePtEC1', 'RelativePtEC2', 'RelativePtHF', 'RelativeBal', 'RelativeSample', 'RelativeStatEC', 'RelativeStatFSR', 'RelativeStatHF']
 #jesUnc = ['RelativeJEREC1', 'RelativeJEREC2', 'RelativeJERHF', 'RelativePtBB', 'RelativePtEC1', 'RelativePtEC2', 'RelativePtHF', 'RelativeBal', 'RelativeSample', 'RelativeStatEC', 'RelativeStatFSR', 'RelativeStatHF', 'SinglePionECAL', 'SinglePionHCAL', 'TimePtEta']
+
+jesUncDecorrelated = ['AbsoluteStat','RelativeJEREC1','RelativeJEREC2','RelativePtEC1','RelativePtEC2','RelativeSample','RelativeStatEC','RelativeStatFSR','RelativeStatHF','TimePtEta']
+
 for unc in jesUnc:
-    greenShape.append('CMS_scale'+unc+'_j')
+    if unc in jesUncDecorrelated:
+        greenShape.append('CMS_scale'+unc+'_j_'+year)
+    else:
+        greenShape.append('CMS_scale'+unc+'_j')
 
 norm = {
 #    "QCDscale_Z_ACCEPT" : {"DYJets" : 1.03,},

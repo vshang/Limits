@@ -12,7 +12,7 @@ process                             ttZ    TTbarDL TTbarSL DYJetsToLL  ttV     S
 process                             9      1       2       3           4       5           6       7
 rate                                -1     -1      -1      -1          -1      -1          -1      -1
 --------------------------------
-lumi18_13TeV	            lnN     1.025  1.025   1.025   1.025       1.025   1.025       1.025   1.025
+lumi16_13TeV	            lnN     1.012  1.012   1.012   1.012       1.012   1.012       1.012   1.012
 QCDScale_ren_ttZ            shape   1      0       0       0           0       0           0       0
 QCDScale_fac_ttZ            shape   1      0       0       0           0       0           0       0
 QCDScale_ren_TT             shape   0      1       1       0           0       0           0       0
@@ -41,6 +41,7 @@ CMS_eff_b_light_corr        shape   1      1       1       1           1       1
 CMS_eff_b_2018              shape   1      1       1       1           1       1           1       1
 CMS_eff_b_light_2018        shape   1      1       1       1           1       1           1       1
 CMS_scale_pu                shape   1      1       1       1           1       1           1       1
+CMS_eff_dilep_trigger       shape   1      1       1       1           1       1           1       1
 CMS_pdf                     shape   1      1       1       1           1       1           1       1
 CMS_res_j_2018              shape   1      1       1       1           1       1           1       1
 CMS_scaleAbsoluteMPFBias_j  shape   1      1       1       1           1       1           1       1
