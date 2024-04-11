@@ -37,6 +37,7 @@ parser.add_option("-b", "--bash", action="store_true", default=False, dest="bash
 parser.add_option("-B", "--blind", action="store_true", default=False, dest="blind")
 parser.add_option("-N", "--name", action="store", type="string", default="", dest="name")
 parser.add_option("-Y", "--year", action="store", type="string", default="2016", dest="year")
+parser.add_option("-R", "--ratio", action="store_false", default=True, dest="ratio")
 (options, args) = parser.parse_args()
 if options.bash: gROOT.SetBatch(True)
 gStyle.SetOptStat(0)
@@ -60,6 +61,20 @@ if options.signal=="":
 
 
 signals = [50, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+if options.mediator == "SC":
+    if options.signal == "tDM":
+        signalXsecs = [883.8, 339.74, 171.12, 98.81, 62.33, 28.906, 41.82, 17.516, 10.967, 7.29]
+    elif options.signal == "ttDM":
+        signalXsecs = [3065.5, 722.67, 240.65, 104.25, 54.20, 32.22, 21.39, 12.99, 8.125, 5.585]
+    else:
+        signalXsecs = [3949.3, 1062.41, 411.77, 203.06, 116.53, 61.126, 63.21, 30.506, 19.092, 12.875]
+else:
+    if options.signal == "tDM":
+        signalXsecs = [162.95, 108.85, 74.19, 52.09, 37.63, 27.62, 16.338, 8.713, 5.967, 4.348]
+    elif options.signal == "ttDM":
+        signalXsecs = [309.70, 194.83, 127.30, 87.99, 60.80, 43.29, 24.69, 12.69, 8.375, 5.958]
+    else:
+        signalXsecs = [472.65, 303.68, 201.49, 140.08, 98.43, 70.91, 41.028, 21.403, 14.342, 10.306]
 
 
 try: os.stat('plotsLimit_'+options.name)
@@ -79,11 +94,16 @@ def fillValues(filename):
                 signals.remove(s)
                 print "Signal", filename % s, "has no values"
                 continue
-            for i, f in enumerate(val[s]): val[s][i] = float(val[s][i])
+            for j, f in enumerate(val[s]): 
+                if options.ratio:
+                    val[s][j] = float(val[s][j])
+                else:
+                    val[s][j] = float(val[s][j])*signalXsecs[i]
             if 'fullCls' in filename: val[1:5]=sorted(val[1:5])
             if not s in mass: mass.append(s)
         except:
             print "File", filename % s, "does not exist"
+    #print val
     return mass, val
 
 
@@ -108,6 +128,7 @@ def limit(channel, signal):
     Sign = TGraph()
     pVal = TGraph()
     Best = TGraphAsymmErrors()
+    Theory0s = TGraph()
     
     for i, m in enumerate(mass):
         if not m in val:
@@ -125,6 +146,7 @@ def limit(channel, signal):
         #pVal.SetPoint(n, m, val[m][7])
         #Best.SetPoint(n, m, val[m][8])
         #Best.SetPointError(m, 0., 0., abs(val[m][9]), abs(val[m][10]))
+        Theory0s.SetPoint(n, m, signalXsecs[i]*multF)
    
     Exp2s.SetLineWidth(2)
     Exp2s.SetLineStyle(1)
@@ -137,6 +159,9 @@ def limit(channel, signal):
     Exp1s.SetLineColor(417) #kGreen+1
     Exp2s.SetFillColor(800) #kOrange
     Exp2s.SetLineColor(800) #kOrange
+    Theory0s.SetLineStyle(2)
+    Theory0s.SetLineWidth(3)
+    Theory0s.SetLineColor(632) #kRed
     if options.mediator=='SC':
         Exp2s.GetXaxis().SetTitle("m_{#phi} (GeV)")
     else:
@@ -146,7 +171,10 @@ def limit(channel, signal):
     Exp2s.GetXaxis().SetNoExponent(True)
     Exp2s.GetXaxis().SetMoreLogLabels(True)
     Exp2s.GetYaxis().SetTitleSize(Exp2s.GetYaxis().GetTitleSize()*1.5)
-    Exp2s.GetYaxis().SetTitle("#sigma/#sigma_{th}")
+    if options.ratio:
+        Exp2s.GetYaxis().SetTitle("#sigma/#sigma_{th}")
+    else:
+        Exp2s.GetYaxis().SetTitle("#sigma")
     Exp2s.GetYaxis().SetTitleOffset(1.5)
     Exp2s.GetYaxis().SetNoExponent(True)
     #Exp2s.GetYaxis().SetMoreLogLabels()##to uncomment
@@ -186,17 +214,20 @@ def limit(channel, signal):
     Exp2s.Draw("A3")
     Exp1s.Draw("SAME, 3")
 
-    #Line
+    #Theory Line
     c1.GetPad(0).Update()
-    line = TLine(50.,1.0,500,1.0)
-    print "min",c1.GetPad(0).GetUxmin()
-    print "max",c1.GetPad(0).GetUxmax()
-    print "min",Exp2s.GetXaxis().GetXmin()
-    print "max",Exp2s.GetXaxis().GetXmax()
-    line.SetLineColor(921)
-    line.SetLineWidth(2)
-    line.SetLineStyle(1)
-    line.Draw()
+    if options.ratio:
+        line = TLine(50.,1.0,500,1.0)
+        print "min",c1.GetPad(0).GetUxmin()
+        print "max",c1.GetPad(0).GetUxmax()
+        print "min",Exp2s.GetXaxis().GetXmin()
+        print "max",Exp2s.GetXaxis().GetXmax()
+        line.SetLineColor(921)
+        line.SetLineWidth(2)
+        line.SetLineStyle(1)
+        line.Draw()
+    else:
+        Theory0s.Draw("SAME, L")
 
     Exp0s.Draw("SAME, L")
     if not options.blind: Obs0s.Draw("SAME, L")
@@ -225,7 +256,10 @@ def limit(channel, signal):
     else:
         Exp2s.GetYaxis().SetRangeUser(0.0001, 14)
     #else: Exp2s.GetYaxis().SetRangeUser(0.1, 1.e2)
-    Exp2s.GetYaxis().SetRangeUser(0.05, 500.)##to remove
+    if options.ratio:
+        Exp2s.GetYaxis().SetRangeUser(0.05, 500.)##to remove
+    else:
+        Exp2s.GetYaxis().SetRangeUser(5., 1.e4)
     Exp2s.GetXaxis().SetRangeUser(mass[0], mass[-1])
     drawAnalysis("tDM")
     drawRegion(channel, True)
@@ -242,7 +276,10 @@ def limit(channel, signal):
     else:
         text = "#bf{Pseudoscalar, Dirac #chi, g_{#chi} = g_{q} = 1, m_{#chi} = 1 GeV}"
     #latex.DrawLatex(0.15, 0.83, text)
-    latex.DrawLatex(0.15, 0.8, text)
+    if options.ratio:
+        latex.DrawLatex(0.15, 0.8, text)
+    else:
+        latex.DrawLatex(0.42, 0.8, text)
     #drawCMS(LUMI, "Preliminary")
     drawCMS(LUMI, "")
     
@@ -301,7 +338,10 @@ def limit(channel, signal):
     
     #leg = TLegend(0.55, top-nitems*0.3/5., 0.95, top)
     #leg = TLegend(0.15, 0.40, 0.55, 0.76)
-    leg = TLegend(0.14, 0.52, 0.49, 0.76)
+    if options.ratio:
+        leg = TLegend(0.14, 0.52, 0.49, 0.76)
+    else:
+        leg = TLegend(0.41, 0.52, 0.76, 0.76)
     leg.SetBorderSize(0)
     leg.SetFillStyle(0) #1001
     leg.SetFillColor(0)
@@ -312,10 +352,14 @@ def limit(channel, signal):
     #     leg.SetHeader("Scalar, Dirac #chi, g_{#chi} = g_{q} = 1, m_{#chi} = 1 GeV")
     # else:
     #     leg.SetHeader("Pseudoscalar, Dirac #chi, g_{#chi} = g_{q} = 1, m_{#chi} = 1 GeV")
+    if not options.ratio: leg.AddEntry(Theory0s, "LO #sigma_{th}", "l")
     if not options.blind: leg.AddEntry(Obs0s,  "Observed 95% CL", "l")
-    #leg.AddEntry(Exp0s,  "Expected 95% CL (t+DM, tt+DM)", "l")
-    #leg.AddEntry(Exp0s,  "Median expected 95% CL (t+DM, tt+DM)", "l")
-    leg.AddEntry(Exp0s,  "Median expected 95% CL (tt+DM)", "l")
+    if options.signal == "tDM":
+        leg.AddEntry(Exp0s,  "Median expected 95% CL (t+DM)", "l")
+    elif options.signal == "ttDM":
+        leg.AddEntry(Exp0s,  "Median expected 95% CL (tt+DM)", "l")
+    elif options.signal == "tttDM":
+        leg.AddEntry(Exp0s,  "Median expected 95% CL (t/tt+DM)", "l")
     leg.AddEntry(Exp1s, "68% CL expected", "f")
     leg.AddEntry(Exp2s, "95% CL expected", "f")
 
@@ -329,10 +373,11 @@ def limit(channel, signal):
     c1.GetPad(0).RedrawAxis()
     c1.GetPad(0).Update()
     if gROOT.IsBatch():
+        suffix = ""
+        if not options.ratio:
+            suffix += "_noRatio"
         if options.blind:
-            suffix = "_blind"
-        else:
-            suffix = ""
+            suffix += "_blind"
         c1.Print("plotsLimit_"+options.name+"/Exclusion_"+channel+"_"+options.mediator+"_"+options.bjets+suffix+".root")
         c1.Print("plotsLimit_"+options.name+"/Exclusion_"+channel+"_"+options.mediator+"_"+options.bjets+suffix+".png")
         c1.Print("plotsLimit_"+options.name+"/Exclusion_"+channel+"_"+options.mediator+"_"+options.bjets+suffix+".pdf")

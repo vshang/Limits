@@ -35,11 +35,17 @@ bkgFilter = json.load(open('bkg_filter.json'))
 addFilter = json.load(open('add_filter' + year + '.json'))
 
 #latest one used
+
+greenShape = ['CMS_res_j_'+year, 'CMS_WewkWeight', 'CMS_ZewkWeight', 'CMS_pdf', 'CMS_eff_b_corr', 'CMS_eff_b_light_corr', 'CMS_eff_b_'+year, 'CMS_eff_b_light_'+year, 'CMS_scale_pu', 'CMS_eff_met_trigger', 'QCDScale_ren_TT', 'QCDScale_fac_TT', 'QCDScale_ren_VV', 'QCDScale_fac_VV', 'preFire', 'CMS_eff_e', 'CMS_eff_m', 'CMS_trig_e', 'CMS_trig_m', 'CMS_WqcdWeightRen', 'CMS_WqcdWeightFac', 'CMS_ZqcdWeightRen', 'CMS_ZqcdWeightFac', 'nbjet_SF_W', 'nbjet_SF_Z', 'CMS_HF_W_1b', 'CMS_HF_Z_1b', 'CMS_HF_W_2b', 'CMS_HF_Z_2b']
+
+# if year == "2016":
+#     greenShape = ['CMS_res_j_'+year, 'CMS_WewkWeight', 'CMS_ZewkWeight', 'CMS_pdf', 'CMS_eff_b_corr', 'CMS_eff_b_light_corr', 'CMS_eff_b_'+year, 'CMS_eff_b_light_'+year, 'CMS_scale_pu', 'CMS_eff_met_trigger', 'QCDScale_ren_TT', 'QCDScale_fac_TT', 'QCDScale_ren_VV', 'QCDScale_fac_VV', 'preFire', 'CMS_eff_e', 'CMS_eff_m', 'CMS_trig_e', 'CMS_trig_m', 'CMS_WqcdWeightRen', 'CMS_WqcdWeightFac', 'CMS_ZqcdWeightRen', 'CMS_ZqcdWeightFac', 'nbjet_SF_W', 'nbjet_SF_Z', 'CMS_HF_W_1b_2016', 'CMS_HF_Z_1b_2016', 'CMS_HF_W_2b_2016', 'CMS_HF_Z_2b_2016']
+# else:
+#     greenShape = ['CMS_res_j_'+year, 'CMS_WewkWeight', 'CMS_ZewkWeight', 'CMS_pdf', 'CMS_eff_b_corr', 'CMS_eff_b_light_corr', 'CMS_eff_b_'+year, 'CMS_eff_b_light_'+year, 'CMS_scale_pu', 'CMS_eff_met_trigger', 'QCDScale_ren_TT', 'QCDScale_fac_TT', 'QCDScale_ren_VV', 'QCDScale_fac_VV', 'preFire', 'CMS_eff_e', 'CMS_eff_m', 'CMS_trig_e', 'CMS_trig_m', 'CMS_WqcdWeightRen', 'CMS_WqcdWeightFac', 'CMS_ZqcdWeightRen', 'CMS_ZqcdWeightFac', 'nbjet_SF_W', 'nbjet_SF_Z', 'CMS_HF_W_1b', 'CMS_HF_Z_1b', 'CMS_HF_W_2b', 'CMS_HF_Z_2b']
+
 #greenShape = ['CMS_res_j_'+year, 'CMS_WewkWeight', 'CMS_ZewkWeight', 'CMS_pdf', 'CMS_eff_b_corr', 'CMS_eff_b_light_corr', 'CMS_eff_b_'+year, 'CMS_eff_b_light_'+year, 'CMS_scale_pu', 'CMS_eff_met_trigger', 'QCDScale_ren_TT', 'QCDScale_fac_TT', 'QCDScale_ren_VV', 'QCDScale_fac_VV', 'preFire', 'CMS_eff_e', 'CMS_eff_m', 'CMS_trig_e', 'CMS_trig_m', 'CMS_WqcdWeightRen', 'CMS_WqcdWeightFac', 'CMS_ZqcdWeightRen', 'CMS_ZqcdWeightFac', 'nbjet_SF_W', 'nbjet_SF_Z']
 
 #greenShape = ['CMS_res_j_'+year, 'CMS_WewkWeight', 'CMS_ZewkWeight', 'CMS_pdf', 'CMS_eff_b_jes', 'CMS_eff_b_pileup', 'CMS_eff_b_type3', 'CMS_eff_b_light_corr', 'CMS_eff_b_stat_'+year, 'CMS_eff_b_light_'+year, 'CMS_scale_pu', 'CMS_eff_met_trigger', 'QCDScale_ren_TT', 'QCDScale_fac_TT', 'QCDScale_ren_VV', 'QCDScale_fac_VV', 'preFire', 'CMS_eff_e', 'CMS_eff_m', 'CMS_trig_e', 'CMS_trig_m', 'CMS_WqcdWeightRen', 'CMS_WqcdWeightFac', 'CMS_ZqcdWeightRen', 'CMS_ZqcdWeightFac', 'nbjet_SF_W', 'nbjet_SF_Z']
-
-greenShape = ['CMS_res_j_'+year, 'CMS_WewkWeight', 'CMS_ZewkWeight', 'CMS_pdf', 'CMS_eff_b_corr', 'CMS_eff_b_light_corr', 'CMS_eff_b_'+year, 'CMS_eff_b_light_'+year, 'CMS_scale_pu', 'CMS_eff_met_trigger', 'QCDScale_ren_TT', 'QCDScale_fac_TT', 'QCDScale_ren_VV', 'QCDScale_fac_VV', 'preFire', 'CMS_eff_e', 'CMS_eff_m', 'CMS_trig_e', 'CMS_trig_m', 'CMS_WqcdWeightRen', 'CMS_WqcdWeightFac', 'CMS_ZqcdWeightRen', 'CMS_ZqcdWeightFac', 'nbjet_SF_W', 'nbjet_SF_Z', 'CMS_HF_W_1b', 'CMS_HF_Z_1b', 'CMS_HF_W_2b', 'CMS_HF_Z_2b']
 
 #greenShape = ['CMS_res_j_'+year, 'CMS_WewkWeight', 'CMS_ZewkWeight', 'CMS_pdf', 'CMS_eff_b_corr_AH', 'CMS_eff_b_corr_SL', 'CMS_eff_b_light_corr', 'CMS_eff_b_'+year, 'CMS_eff_b_light_'+year, 'CMS_scale_pu', 'CMS_eff_met_trigger', 'QCDScale_ren_TT', 'QCDScale_fac_TT', 'QCDScale_ren_VV', 'QCDScale_fac_VV', 'preFire', 'CMS_eff_e', 'CMS_eff_m', 'CMS_trig_e', 'CMS_trig_m', 'CMS_WqcdWeightRen', 'CMS_WqcdWeightFac', 'CMS_ZqcdWeightRen', 'CMS_ZqcdWeightFac', 'nbjet_SF_W', 'nbjet_SF_Z']
 
@@ -117,9 +123,9 @@ norm = {
     #"QCD_xsec"   : {"QCD" : 2.000},
     #"QCD_xsec"   : {"QCD" : 1.500},
     "ST_xsec"     : {"ST" : 1.200},
-    "QCDScale_tDM" : {"tDM_" : 1.3},
-    "QCDScale_ttDM" : {"ttDM_" : 1.3},
-    "QCDScale_tttDM" : {"tttDM_" : 1.3},
+    # "QCDScale_tDM" : {"tDM_" : 1.3},
+    # "QCDScale_ttDM" : {"ttDM_" : 1.3},
+    # "QCDScale_tttDM" : {"tttDM_" : 1.3},
     "ttH_HToInv_xsec" : {"ttDM_" : [1.068, 0.901]},
     "CMS_PSisr"   : {"VV" : 1.05, "ST" : 1.05, "DM" : 1.05, "TTV" : 1.05, "TTTo2L2Nu" : 1.05, "TTToSemiLepton" : 1.05, "Other" : 1.05},
     "CMS_PSfsr"   : {"VV" : 1.05, "ST" : 1.05, "DM" : 1.05, "TTV" : 1.05, "TTTo2L2Nu" : 1.05, "TTToSemiLepton" : 1.05, "Other" : 1.05},
