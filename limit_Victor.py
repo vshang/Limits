@@ -63,11 +63,11 @@ if options.signal=="":
 signals = [50, 100, 150, 200, 250, 300, 350, 400, 450, 500]
 if options.mediator == "SC":
     if options.signal == "tDM":
-        signalXsecs = [883.8, 339.74, 171.12, 98.81, 62.33, 28.906, 41.82, 17.516, 10.967, 7.29]
+        signalXsecs = [883.8, 339.74, 171.12, 98.81, 62.33, 41.82, 28.906, 17.516, 10.967, 7.29]
     elif options.signal == "ttDM":
         signalXsecs = [3065.5, 722.67, 240.65, 104.25, 54.20, 32.22, 21.39, 12.99, 8.125, 5.585]
     else:
-        signalXsecs = [3949.3, 1062.41, 411.77, 203.06, 116.53, 61.126, 63.21, 30.506, 19.092, 12.875]
+        signalXsecs = [3949.3, 1062.41, 411.77, 203.06, 116.53, 74.04, 50.296, 30.506, 19.092, 12.875]
 else:
     if options.signal == "tDM":
         signalXsecs = [162.95, 108.85, 74.19, 52.09, 37.63, 27.62, 16.338, 8.713, 5.967, 4.348]
@@ -279,7 +279,7 @@ def limit(channel, signal):
     if options.ratio:
         latex.DrawLatex(0.15, 0.8, text)
     else:
-        latex.DrawLatex(0.42, 0.8, text)
+        latex.DrawLatex(0.36, 0.8, text)
     #drawCMS(LUMI, "Preliminary")
     drawCMS(LUMI, "")
     
@@ -341,7 +341,7 @@ def limit(channel, signal):
     if options.ratio:
         leg = TLegend(0.14, 0.52, 0.49, 0.76)
     else:
-        leg = TLegend(0.41, 0.52, 0.76, 0.76)
+        leg = TLegend(0.35, 0.52, 0.70, 0.76)
     leg.SetBorderSize(0)
     leg.SetFillStyle(0) #1001
     leg.SetFillColor(0)
