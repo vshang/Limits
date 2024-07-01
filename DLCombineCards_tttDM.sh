@@ -50,7 +50,7 @@ do
     if [[ "$card" == *"_MChi1_MPhi125"* ]]; then
 	continue
     fi
-    combineCards.py AHSL=$card DL=dilepton/cards/test/full_run2_scalar.txt > ${card/_RunII.txt/.txt}
+    combineCards.py -S AHSL=$card DL=dilepton/cards/test/full_run2_scalar.txt > ${card/_RunII.txt/.txt}
     echo "done ${card/_RunII.txt/.txt}"
 done
 
@@ -59,7 +59,7 @@ do
     if [[ "$card" == *"_MChi1_MPhi125"* ]]; then
 	continue
     fi
-    combineCards.py AHSL=$card DL=dilepton/cards/test/full_run2_pseudo.txt > ${card/_RunII.txt/.txt}
+    combineCards.py -S AHSL=$card DL=dilepton/cards/test/full_run2_pseudo.txt > ${card/_RunII.txt/.txt}
     echo "done ${card/_RunII.txt/.txt}"
 done
 

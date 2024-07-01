@@ -61,6 +61,7 @@ if options.signal=="":
 
 
 signals = [50, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+#signals = [10, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500]
 if options.mediator == "SC":
     if options.signal == "tDM":
         signalXsecs = [883.8, 339.74, 171.12, 98.81, 62.33, 41.82, 28.906, 17.516, 10.967, 7.29]
@@ -76,7 +77,8 @@ else:
     else:
         signalXsecs = [472.65, 303.68, 201.49, 140.08, 98.43, 70.91, 41.028, 21.403, 14.342, 10.306]
 
-
+signalXsecs.insert(0, 1) #Only uncomment when including 1,10 GeV mass point
+        
 try: os.stat('plotsLimit_'+options.name)
 except: os.mkdir('plotsLimit_'+options.name)
 

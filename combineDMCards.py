@@ -61,9 +61,9 @@ def combineCards():
 
     for s in signalPoints:
         cardsForSignal = glob.glob(s[0]+'_MChi'+s[1]+'_MPhi'+s[2]+'_'+s[3]+'*.txt')
-        cmdSL = "combineCards.py "
-        cmdAH = "combineCards.py "
-        cmdALL = "combineCards.py "
+        cmdSL = "combineCards.py -S "
+        cmdAH = "combineCards.py -S "
+        cmdALL = "combineCards.py -S "
         
         for card in cardsForSignal:
             if bjet=='1b' and '2b' in card: continue

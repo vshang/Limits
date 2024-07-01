@@ -35,7 +35,7 @@ cd ../$RUNDIR
 echo Merging datacards...
 for card in *tDM*_2016.txt
 do
-    combineCards.py run16=$card run17=${card/_2016.txt/_2017.txt} run18=${card/_2016.txt/_2018.txt} > ${card/_2016.txt/.txt}
+    combineCards.py -S run16=$card run17=${card/_2016.txt/_2017.txt} run18=${card/_2016.txt/_2018.txt} > ${card/_2016.txt/.txt}
     echo "done ${card/_2016.txt/.txt}"
 
 done
